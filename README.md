@@ -1,1 +1,3 @@
-# mindease-documentation
+MindEase – Mood Tracking & Therapy Booking System
+A full-stack HealthTech platform empowering users to monitor their emotional wellbeing, visualize mood trends, and connect with certified therapists.
+Built using Django REST Framework, React (PWA), and PostgreSQL, MindEase integrates mood analytics, role-based access, rule-based content recommendations, and an admin dashboard for seamless management.
