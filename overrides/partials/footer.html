@@ -1,0 +1,18 @@
+{% set year = "2025" %}
+<footer class="md-footer-custom">
+  <div class="md-footer-meta__inner">
+    <div class="footer-left">
+      <strong>MindEase</strong> — Mood Tracking & Therapy Booking System
+    </div>
+    <div class="footer-center">
+      <a href="https://github.com/your-username/mindease-docs">GitHub</a>
+      &nbsp;•&nbsp;
+      <a href="{{ config.repo_url }}/issues">Issues</a>
+      &nbsp;•&nbsp;
+      <a href="{{ base_url }}/index.html">Home</a>
+    </div>
+    <div class="footer-right">
+      © {{ year }} MindEase · v{{ config.extra.version | default('1.0') }}
+    </div>
+  </div>
+</footer>
