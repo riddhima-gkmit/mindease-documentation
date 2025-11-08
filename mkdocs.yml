@@ -1,14 +1,14 @@
 site_name: MindEase Documentation
 site_description: MindEase – Mood Tracking & Therapy Booking System (PWA) Documentation
-site_url: https://your-username.github.io/mindease-docs/
-repo_url: https://github.com/your-username/mindease-docs
-repo_name: your-username/mindease-docs
+site_url: https://riddhima-gkmit.github.io/mindease-documentation/
+repo_url: https://github.com/riddhima-gkmit/mindease-documentation/
+repo_name: riddhima-gkmit.github.io/mindease-documentation
 site_author: Riddhima Kushwah
 copyright: "© 2025 MindEase. All rights reserved."
 
 theme:
   name: material
-  logo: assets/logo.png
+  logo: assets/mindease-logo.png
   favicon: assets/favicon.png
   language: en
   features:
