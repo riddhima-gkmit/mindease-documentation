@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://your-username.github.io/mindease-docs/</loc>
+         <loc>https://riddhima-gkmit.github.io/mindease-documentation/</loc>
          <lastmod>2025-11-08</lastmod>
     </url>
     <url>
-         <loc>https://your-username.github.io/mindease-docs/usecase/</loc>
+         <loc>https://riddhima-gkmit.github.io/mindease-documentation/usecase/</loc>
          <lastmod>2025-11-08</lastmod>
     </url>
     <url>
-         <loc>https://your-username.github.io/mindease-docs/usecase/business/</loc>
+         <loc>https://riddhima-gkmit.github.io/mindease-documentation/usecase/business/</loc>
          <lastmod>2025-11-08</lastmod>
     </url>
     <url>
-         <loc>https://your-username.github.io/mindease-docs/usecase/functional/</loc>
+         <loc>https://riddhima-gkmit.github.io/mindease-documentation/usecase/functional/</loc>
          <lastmod>2025-11-08</lastmod>
     </url>
 </urlset>
