@@ -1,5 +1,5 @@
 site_name: MindEase Documentation
-site_description: MindEase – Mood Tracking & Therapy Booking System (PWA) Documentation
+site_description: MindEase – Mood Tracking & Therapy Booking System Documentation
 site_url: https://riddhima-gkmit.github.io/mindease-documentation/
 repo_url: https://github.com/riddhima-gkmit/mindease-documentation/
 repo_name: riddhima-gkmit.github.io/mindease-documentation
@@ -8,7 +8,7 @@ copyright: "© 2025 MindEase. All rights reserved."
 
 theme:
   name: material
-  logo: assets/mindease-logo.png
+  logo: assets/images/mindease-logo.png
   favicon: assets/favicon.png
   language: en
   features:
@@ -80,8 +80,16 @@ extra_javascript:
   - theme/extra.js
 
 nav:
-  - Overview: index.md
-  - Use Case:
-    - usecase/index.md
-    - Functional Use Case: usecase/functional.md
-    - Business Use Case: usecase/business.md
+  - Home: index.md
+  - Functional Docs: functional-docs.md
+  - Use Cases: use-cases.md
+  - Technical Docs:
+      - Tech Stack: technical/tech-stack.md
+      - Architecture: technical/architecture.md
+      - Data Flow: technical/data-flow.md
+      - Schema Design: technical/schema-design.md
+      - Authentication: technical/authentication.md
+      - API Design: technical/api-design.md
+  - Edge Cases & Error Handling: edge-cases.md
+  - Future Enhancements: future.md
+  

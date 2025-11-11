@@ -1,46 +1,37 @@
-# MindEase – Mood Tracking & Therapy Booking System
+# MindEase
+**A simple, web-based system for mood tracking, therapist booking, and personalized wellness recommendations.**
 
-> A Progressive Web App (PWA) that helps users track emotional wellbeing, receive mindful recommendations, and book therapy sessions—with role-based access, analytics, and admin oversight.
+---
 
-!!! tip "What this project demonstrates"
-    - Modern **Django + DRF** backend with **JWT** auth  
-    - **React PWA** front-end with charts and offline-first UX  
-    - **Role-based** flows for Patient, Therapist, Admin  
-    - **Analytics**: weekly mood trends, positive/negative ratio  
-    - **Book** sessions, manage availability, post-session notes
+## The Problem
+People seeking mental wellness and small clinics face three main challenges:
 
-## Tech Stack
+1. **Fragmented Mood Tracking & No Context**  
+   Users track feelings manually or not at all — no reliable daily history, making it hard to spot trends or triggers.
 
-| **Layer**     | **Technology / Tools**                                  | **Purpose** |
-|----------------|----------------------------------------------------------|--------------|
-| **Frontend**   | React (PWA), Recharts / Chart.js                        | Interactive UI, charts, mood visualization |
-| **Backend**    | Django, Django REST Framework (DRF), SimpleJWT           | RESTful APIs, authentication, and business logic |
-| **Database**   | PostgreSQL                                              | Data storage for users, moods, appointments, and content |
-| **Email**      | SMTP (Mailtrap / Gmail)                                 | Email verification, password reset, appointment notifications |
-| **Docs**       | MkDocs Material                                         | Project documentation with themes and navigation |
-| **Deployment** | Render (Backend API), Netlify (Frontend PWA)            | Cloud hosting and CI/CD deployment |
+2. **Manual Appointment Scheduling**  
+   Booking exchanges (calls/messages) are slow and error-prone. Therapists and patients lose time coordinating.
 
+3. **No Personalized Guidance**  
+   Users receive generic tips or none at all; clinicians lack quick insight-driven suggestions based on recent mood history.
 
-## Requirements
+---
 
-### Functional Requirements
-- Secure user authentication (JWT, email verification, password reset)  
-- Mood tracking with weekly analytics and trends  
-- Rule-based mindfulness content recommendations  
-- Therapist profiles, availability, and session notes  
-- Appointment booking and email confirmations  
-- Admin dashboard for content and user management  
+## The Solution — MindEase
+MindEase automates daily mood tracking, appointment booking, and delivers simple, rule-based recommendations. It consists of three main parts:
 
-### Non-Functional Requirements
-- Responsive and user-friendly PWA interface  
-- Secure data handling (HTTPS, JWT tokens)  
-- Fast API responses (<500ms average)  
-- Scalable Django–React–PostgreSQL architecture  
-- Reliable email notifications and smooth deployment  
+- **Mood Tracking:** Quick daily entries (emoji/score + note) stored as history.  
+- **Appointment Booking:** Browse therapists, book confirmed slots, and receive email confirmations.  
+- **Recommendations:** Rule-based tips delivered from recent 7-day mood trends.
 
+### Key Features
+- Email + JWT authentication and role-based access (patient / therapist / admin)  
+- One-entry-per-day mood logging with a weekly analytics endpoint  
+- Therapist profiles + availability and approval workflow for admins  
+- Appointment booking with conflict prevention and session notes  
+- Admin-managed content library and rule-based recommendations
 
-
-
+---
 
 ## Quick Overview
 === "Patient"
