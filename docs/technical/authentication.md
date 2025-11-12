@@ -27,7 +27,7 @@ MindEase uses **RBAC (Role-Based Access Control)** to ensure users can only perf
 | Add / Edit Mood Entry | ✅ | ❌ | ❌ |
 | View Mood Analytics | ✅ (own) | ❌ | ✅ (global) |
 | Browse Therapist Directory | ✅ | ✅ | ✅ |
-| Book / Cancel Appointment | ✅ | ✅ (own only) | ✅ |
+| Book / Cancel Appointment | ✅ | ✅ (own only) |  ❌ |
 | Manage Availability / Slots | ❌ | ✅ | ✅ |
 | Add Session Notes | ❌ | ✅ | ✅ |
 | View Session Notes | ✅ (own) | ✅ (their patients) | ✅ |

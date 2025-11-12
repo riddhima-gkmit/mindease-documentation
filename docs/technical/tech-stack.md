@@ -32,11 +32,11 @@
 
 | Technology | Purpose |
 |-------------|----------|
-| **Netlify / Vercel** | Deploy and host frontend. |
+| **Vercel** | Deploy and host frontend. |
 | **AWS** | Cloud hosting and storage. |
 | **GitHub Actions** | Automate testing and deployment. |
 | **GitHub** | Version control and collaboration. |
-| **Docker (Optional)** | Containerize and manage environments. |
+| **Docker** | Containerize and manage environments. |
 
 ---
 

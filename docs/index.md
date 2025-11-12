@@ -7,7 +7,7 @@
 People seeking mental wellness and small clinics face three main challenges:
 
 1. **Fragmented Mood Tracking & No Context**  
-   Users track feelings manually or not at all — no reliable daily history, making it hard to spot trends or triggers.
+   Users track feelings manually or not at all - no reliable daily history, making it hard to spot trends or triggers.
 
 2. **Manual Appointment Scheduling**  
    Booking exchanges (calls/messages) are slow and error-prone. Therapists and patients lose time coordinating.
@@ -17,7 +17,7 @@ People seeking mental wellness and small clinics face three main challenges:
 
 ---
 
-## The Solution — MindEase
+## The Solution - MindEase
 MindEase automates daily mood tracking, appointment booking, and delivers simple, rule-based recommendations. It consists of three main parts:
 
 - **Mood Tracking:** Quick daily entries (emoji/score + note) stored as history.  
@@ -36,7 +36,7 @@ MindEase automates daily mood tracking, appointment booking, and delivers simple
 ## Quick Overview
 === "Patient"
     - Register/login (email verification, reset password)  
-    - Log daily mood (1–5), view trends  
+    - Log daily mood (1-5), view trends  
     - Browse therapists, book/cancel appointments  
     - Receive mindful tips based on mood patterns
 

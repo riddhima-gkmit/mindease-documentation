@@ -9,26 +9,28 @@
         <meta name="author" content="Riddhima Kushwah">
       
       
-        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/">
+        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/edge-cases/">
       
       
+        <link rel="prev" href="../technical/api-design/">
       
-        <link rel="next" href="functional-docs/">
+      
+        <link rel="next" href="../future/">
       
       
-      <link rel="icon" href="assets/favicon.png">
+      <link rel="icon" href="../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>MindEase Documentation</title>
+        <title>Edge Cases &amp; Error Handling - MindEase Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -47,16 +49,16 @@
       
     
     
-      <link rel="stylesheet" href="theme/extra.css">
+      <link rel="stylesheet" href="../theme/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -85,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mindease" class="md-skip">
+        <a href="#edge-cases-error-handling" class="md-skip">
           Skip to content
         </a>
       
@@ -103,9 +105,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="MindEase Documentation" class="md-header__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
+    <a href=".." title="MindEase Documentation" class="md-header__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="assets/images/mindease-logo.png" alt="logo">
+  <img src="../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -122,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Edge Cases &amp; Error Handling
             
           </span>
         </div>
@@ -233,11 +235,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -256,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="functional-docs/" class="md-tabs__link">
+      <a href="../functional-docs/" class="md-tabs__link">
         
   
   
@@ -275,7 +275,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="use-cases/" class="md-tabs__link">
+      <a href="../use-cases/" class="md-tabs__link">
         
   
   
@@ -296,7 +296,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="technical/tech-stack/" class="md-tabs__link">
+        <a href="../technical/tech-stack/" class="md-tabs__link">
           
   
   
@@ -312,9 +312,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="edge-cases/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -333,7 +335,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="future/" class="md-tabs__link">
+      <a href="../future/" class="md-tabs__link">
         
   
   
@@ -370,9 +372,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="MindEase Documentation" class="md-nav__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
+    <a href=".." title="MindEase Documentation" class="md-nav__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="assets/images/mindease-logo.png" alt="logo">
+  <img src="../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     MindEase Documentation
@@ -396,32 +398,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -432,68 +412,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Problem
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-solution-mindease" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Solution — MindEase
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Solution — MindEase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Features
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Overview
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -505,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="functional-docs/" class="md-nav__link">
+      <a href="../functional-docs/" class="md-nav__link">
         
   
   
@@ -527,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="use-cases/" class="md-nav__link">
+      <a href="../use-cases/" class="md-nav__link">
         
   
   
@@ -592,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/tech-stack/" class="md-nav__link">
+      <a href="../technical/tech-stack/" class="md-nav__link">
         
   
   
@@ -615,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/architecture/" class="md-nav__link">
+      <a href="../technical/architecture/" class="md-nav__link">
         
   
   
@@ -638,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/data-flow/" class="md-nav__link">
+      <a href="../technical/data-flow/" class="md-nav__link">
         
   
   
@@ -661,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/schema-design/" class="md-nav__link">
+      <a href="../technical/schema-design/" class="md-nav__link">
         
   
   
@@ -684,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/authentication/" class="md-nav__link">
+      <a href="../technical/authentication/" class="md-nav__link">
         
   
   
@@ -707,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/api-design/" class="md-nav__link">
+      <a href="../technical/api-design/" class="md-nav__link">
         
   
   
@@ -734,10 +652,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="edge-cases/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Edge Cases &amp; Error Handling
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -748,6 +688,107 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-authentication-account-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Authentication &amp; Account Access
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mood-tracker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Mood Tracker
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-therapist-profile-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Therapist Profile &amp; Availability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-appointment-booking" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Appointment Booking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-session-notes-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Session Notes &amp; Privacy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-recommendation-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Recommendation Engine
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-admin-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Admin &amp; Management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-email-token-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Email &amp; Token Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -759,7 +800,7 @@
   
   
     <li class="md-nav__item">
-      <a href="future/" class="md-nav__link">
+      <a href="../future/" class="md-nav__link">
         
   
   
@@ -793,69 +834,99 @@
   
 
 
-<h1 id="mindease">MindEase<a class="headerlink" href="#mindease" title="Permanent link">¶</a></h1>
-<p><strong>A simple, web-based system for mood tracking, therapist booking, and personalized wellness recommendations.</strong></p>
+<h1 id="edge-cases-error-handling">Edge Cases &amp; Error Handling<a class="headerlink" href="#edge-cases-error-handling" title="Permanent link">¶</a></h1>
+<p>This document explains how <strong>MindEase</strong> handles common issues and unexpected situations across key modules like authentication, mood tracking, therapist management, and appointment booking.</p>
 <hr>
-<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
-<p>People seeking mental wellness and small clinics face three main challenges:</p>
-<ol>
-<li>
-<p><strong>Fragmented Mood Tracking &amp; No Context</strong><br>
-   Users track feelings manually or not at all — no reliable daily history, making it hard to spot trends or triggers.</p>
-</li>
-<li>
-<p><strong>Manual Appointment Scheduling</strong><br>
-   Booking exchanges (calls/messages) are slow and error-prone. Therapists and patients lose time coordinating.</p>
-</li>
-<li>
-<p><strong>No Personalized Guidance</strong><br>
-   Users receive generic tips or none at all; clinicians lack quick insight-driven suggestions based on recent mood history.</p>
-</li>
-</ol>
+<h2 id="1-authentication-account-access">1. Authentication &amp; Account Access<a class="headerlink" href="#1-authentication-account-access" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> User leaves email or password empty.<br>
+<strong>Solution:</strong> Show “Email and password are required.”</p>
+<p><strong>Problem:</strong> Invalid email or password.<br>
+<strong>Solution:</strong> Show “Invalid credentials.”</p>
+<p><strong>Problem:</strong> Email not verified.<br>
+<strong>Solution:</strong> Show “Email not verified. Please verify to continue.”</p>
+<p><strong>Problem:</strong> Duplicate email registration.<br>
+<strong>Solution:</strong> Show “Account with this email already exists.”</p>
+<p><strong>Problem:</strong> Expired or invalid token.<br>
+<strong>Solution:</strong> Show “Invalid or expired token.”</p>
+<p><strong>Problem:</strong> Too many reset attempts.<br>
+<strong>Solution:</strong> Limit requests and show “Try again later.”</p>
+<p><strong>Problem:</strong> Deactivated user tries to log in.<br>
+<strong>Solution:</strong> Show “Account deactivated. Contact support.”</p>
 <hr>
-<h2 id="the-solution-mindease">The Solution — MindEase<a class="headerlink" href="#the-solution-mindease" title="Permanent link">¶</a></h2>
-<p>MindEase automates daily mood tracking, appointment booking, and delivers simple, rule-based recommendations. It consists of three main parts:</p>
-<ul>
-<li><strong>Mood Tracking:</strong> Quick daily entries (emoji/score + note) stored as history.  </li>
-<li><strong>Appointment Booking:</strong> Browse therapists, book confirmed slots, and receive email confirmations.  </li>
-<li><strong>Recommendations:</strong> Rule-based tips delivered from recent 7-day mood trends.</li>
-</ul>
-<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">¶</a></h3>
-<ul>
-<li>Email + JWT authentication and role-based access (patient / therapist / admin)  </li>
-<li>One-entry-per-day mood logging with a weekly analytics endpoint  </li>
-<li>Therapist profiles + availability and approval workflow for admins  </li>
-<li>Appointment booking with conflict prevention and session notes  </li>
-<li>Admin-managed content library and rule-based recommendations</li>
-</ul>
+<h2 id="2-mood-tracker">2. Mood Tracker<a class="headerlink" href="#2-mood-tracker" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Duplicate mood entry for the same day.<br>
+<strong>Solution:</strong> Show “Mood for today already logged.”</p>
+<p><strong>Problem:</strong> Invalid mood score (not 1–5).<br>
+<strong>Solution:</strong> Show “Mood score must be between 1 and 5.”</p>
+<p><strong>Problem:</strong> User tries to delete a mood entry.<br>
+<strong>Solution:</strong> Deletion not allowed — only edits permitted.</p>
+<p><strong>Problem:</strong> Not enough data for analytics.<br>
+<strong>Solution:</strong> Show “Not enough data to display insights.”</p>
 <hr>
-<h2 id="quick-overview">Quick Overview<a class="headerlink" href="#quick-overview" title="Permanent link">¶</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Patient</label><label for="__tabbed_1_2">Therapist</label><label for="__tabbed_1_3">Admin</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h2 id="3-therapist-profile-availability">3. Therapist Profile &amp; Availability<a class="headerlink" href="#3-therapist-profile-availability" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Missing required fields in profile.<br>
+<strong>Solution:</strong> Show “Please fill all required fields.”</p>
+<p><strong>Problem:</strong> Overlapping time slots.<br>
+<strong>Solution:</strong> Show “Time slots overlap. Please adjust.”</p>
+<p><strong>Problem:</strong> Therapist not approved.<br>
+<strong>Solution:</strong> Hide from directory until admin approval.</p>
+<hr>
+<h2 id="4-appointment-booking">4. Appointment Booking<a class="headerlink" href="#4-appointment-booking" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Booking unapproved therapist.<br>
+<strong>Solution:</strong> Show “Therapist not available for booking.”</p>
+<p><strong>Problem:</strong> Two users book the same slot.<br>
+<strong>Solution:</strong> Show “Selected slot already booked.”</p>
+<p><strong>Problem:</strong> Cancellation too close to session time.<br>
+<strong>Solution:</strong> Show “Cancellations allowed up to 2 hours before.”</p>
+<p><strong>Problem:</strong> Invalid or unavailable time slot.<br>
+<strong>Solution:</strong> Show “Slot not available.”</p>
+<p><strong>Problem:</strong> Network or server issue during booking.<br>
+<strong>Solution:</strong> Retry or prompt “Booking failed. Try again.”</p>
+<hr>
+<h2 id="5-session-notes-privacy">5. Session Notes &amp; Privacy<a class="headerlink" href="#5-session-notes-privacy" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Therapist views another patient’s notes.<br>
+<strong>Solution:</strong> Show “Access denied.”</p>
+<p><strong>Problem:</strong> Patient tries to view someone else’s session.<br>
+<strong>Solution:</strong> Show “You don’t have permission.”</p>
+<p><strong>Problem:</strong> Session note not saved due to timeout.<br>
+<strong>Solution:</strong> Auto-save drafts periodically.</p>
+<hr>
+<h2 id="6-recommendation-engine">6. Recommendation Engine<a class="headerlink" href="#6-recommendation-engine" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> No content found for mood category.<br>
+<strong>Solution:</strong> Show “No recommendations available.”</p>
+<p><strong>Problem:</strong> Invalid or missing content category.<br>
+<strong>Solution:</strong> Show “Category required.”</p>
+<p><strong>Problem:</strong> Recommendation rule misconfigured.<br>
+<strong>Solution:</strong> Log error and show generic “Daily wellness tip.”</p>
+<hr>
+<h2 id="7-admin-management">7. Admin &amp; Management<a class="headerlink" href="#7-admin-management" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Admin deletes content in use.<br>
+<strong>Solution:</strong> Prevent deletion — show “Content in use.”</p>
+<p><strong>Problem:</strong> Admin tries to deactivate self.<br>
+<strong>Solution:</strong> Show “You can’t deactivate your own account.”</p>
+<p><strong>Problem:</strong> Last admin deactivation attempt.<br>
+<strong>Solution:</strong> Show “Add another admin before deactivating.”</p>
+<hr>
+<h2 id="8-email-token-handling">8. Email &amp; Token Handling<a class="headerlink" href="#8-email-token-handling" title="Permanent link">¶</a></h2>
+<p><strong>Problem:</strong> Verification email not received.<br>
+<strong>Solution:</strong> Allow resend — show “Didn’t get it? Resend link.”</p>
+<p><strong>Problem:</strong> Expired or reused verification link.<br>
+<strong>Solution:</strong> Show “Link expired. Request a new one.”</p>
+<p><strong>Problem:</strong> Email service error.<br>
+<strong>Solution:</strong> Retry and log for admin alert.</p>
+<hr>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h2>
+<p>MindEase ensures a smooth experience by:</p>
 <ul>
-<li>Register/login (email verification, reset password)  </li>
-<li>Log daily mood (1–5), view trends  </li>
-<li>Browse therapists, book/cancel appointments  </li>
-<li>Receive mindful tips based on mood patterns</li>
+<li>Validating all inputs.  </li>
+<li>Preventing duplicate or invalid actions.  </li>
+<li>Handling errors gracefully with clear messages.  </li>
+<li>Maintaining data safety through transactions and rollbacks.  </li>
+<li>Alerting admins for recurring or system-level issues.</li>
 </ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Create profile (specialization, experience, slots)  </li>
-<li>See upcoming and past appointments  </li>
-<li>Add session notes (visible to that Patient)</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Manage Patients/therapists  </li>
-<li>Approve mindfulness content  </li>
-<li>Platform analytics dashboard</li>
-</ul>
-</div>
-</div>
-</div>
+<blockquote>
+<p><strong>Goal:</strong> To provide a secure, reliable, and user-friendly experience even when errors occur.</p>
+</blockquote>
 
 
 
@@ -897,7 +968,7 @@
       &nbsp;•&nbsp;
       <a href="https://github.com/riddhima-gkmit/mindease-documentation//issues">Issues</a>
       &nbsp;•&nbsp;
-      <a href="./index.html">Home</a>
+      <a href="../index.html">Home</a>
     </div>
     <div class="footer-right">
       © 2025 MindEase 
@@ -913,12 +984,12 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mkdocs"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mkdocs"}}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
-        <script src="theme/extra.js"></script>
+        <script src="../theme/extra.js"></script>
       
     
   

@@ -23,7 +23,7 @@ To secure the system and ensure users access only the features permitted for the
 
 ### Features
 
-#### 1.1 User Registration
+#### 1.1 Patient Registration
 - Patients can register using email and password.  
 - Email verification link is sent before account activation.  
 - Role is assigned automatically (patient by default).  
@@ -106,7 +106,7 @@ To maintain verified therapist profiles with detailed availability and specializ
 ## Module 4: Appointment Booking
 
 ### Purpose
-To simplify therapist–patient scheduling and maintain accurate records of consultations.
+To simplify therapist-patient scheduling and maintain accurate records of consultations.
 
 ### Features
 
@@ -143,9 +143,9 @@ To provide personalized wellness tips based on recent mood trends.
 
 #### 5.1 Rule-Based Recommendation
 - Uses last 7-day average mood score to pick category:  
-  - 1–2: “Calming / Gratitude”  
+  - 1-2: “Calming / Gratitude”  
   - 3: “Maintenance / Neutral”  
-  - 4–5: “Uplifting / Motivational”  
+  - 4-5: “Uplifting / Motivational”  
 - Pulls matching content from approved library.
 
 #### 5.2 Content Management

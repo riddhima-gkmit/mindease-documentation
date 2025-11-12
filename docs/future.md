@@ -6,7 +6,7 @@ These features are planned for future versions of **MindEase** to improve user e
 
 ### Mood Tracking
 - Track mood triggers like sleep, weather, or activity.  
-- Add quick mood input using emojis or voice.  
+- Add quick mood input using voice.  
 - Show monthly mood summaries and export as PDF.  
 - Integrate with fitness or health apps (Fitbit, Google Fit).  
 
@@ -52,4 +52,4 @@ These features are planned for future versions of **MindEase** to improve user e
 ---
 
 > **Vision:**  
-> MindEase aims to become a complete digital mental wellness platform — combining mood tracking, therapy access, and personalized recommendations to help users improve their emotional wellbeing.
+> MindEase aims to become a complete digital mental wellness platform - combining mood tracking, therapy access, and personalized recommendations to help users improve their emotional wellbeing.

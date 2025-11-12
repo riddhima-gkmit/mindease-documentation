@@ -2,7 +2,7 @@
 
 ## Understanding How MindEase Works Behind the Scenes
 
-This section provides a visual overview of how information moves through the **MindEase** platform —  
+This section provides a visual overview of how information moves through the **MindEase** platform -  
 from user actions on the frontend (PWA) to backend processing in Django, database interactions, and supporting services like email, recommendations, and analytics.
 
 Below is the **overall data flow diagram**, followed by detailed module-level flows explaining each major feature in the system.

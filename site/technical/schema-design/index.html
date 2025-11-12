@@ -3,19 +3,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="MindEase – Mood Tracking &amp; Therapy Booking System (PWA) Documentation">
+        <meta name="description" content="MindEase – Mood Tracking &amp; Therapy Booking System Documentation">
       
       
         <meta name="author" content="Riddhima Kushwah">
       
       
-        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/usecase/functional/">
+        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/technical/schema-design/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../data-flow/">
       
       
-        <link rel="next" href="../business/">
+        <link rel="next" href="../authentication/">
       
       
       <link rel="icon" href="../../assets/favicon.png">
@@ -23,7 +23,7 @@
     
     
       
-        <title>Functional Use Case - MindEase Documentation</title>
+        <title>Schema Design - MindEase Documentation</title>
       
     
     
@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#functional-design-document" class="md-skip">
+        <a href="#database-schema-documentation" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="MindEase Documentation" class="md-header__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="../../assets/mindease-logo.png" alt="logo">
+  <img src="../../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Functional Use Case
+              Schema Design
             
           </span>
         </div>
@@ -243,7 +243,45 @@
   
     
   
-  Overview
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../functional-docs/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functional Docs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../use-cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Use Cases
 
       </a>
     </li>
@@ -260,15 +298,53 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+        <a href="../tech-stack/" class="md-tabs__link">
           
   
   
-  Use Case
+  Technical Docs
 
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../edge-cases/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Edge Cases &amp; Error Handling
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../future/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Future Enhancements
+
+      </a>
+    </li>
   
 
       
@@ -298,7 +374,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="MindEase Documentation" class="md-nav__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="../../assets/mindease-logo.png" alt="logo">
+  <img src="../../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     MindEase Documentation
@@ -330,7 +406,51 @@
   
   
   <span class="md-ellipsis">
-    Overview
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../functional-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functional Docs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Use Cases
     
   </span>
   
@@ -365,15 +485,15 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
-    Use Case
+    Technical Docs
     
   </span>
   
@@ -381,10 +501,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Use Case
+            Technical Docs
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -395,12 +515,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../tech-stack/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Functional &amp; Business Documentation
+    Tech Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Flow
     
   </span>
   
@@ -432,7 +598,7 @@
   
   
   <span class="md-ellipsis">
-    Functional Use Case
+    Schema Design
     
   </span>
   
@@ -445,7 +611,7 @@
   
   
   <span class="md-ellipsis">
-    Functional Use Case
+    Schema Design
     
   </span>
   
@@ -468,73 +634,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-functional-overview" class="md-nav__link">
+  <a href="#1-tables-and-fields" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Functional Overview
+      1. Tables and Fields
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-functional-modules" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Functional Modules
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Functional Modules">
+    <nav class="md-nav" aria-label="1. Tables and Fields">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-authentication-authorization" class="md-nav__link">
+  <a href="#11-users" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 Authentication &amp; Authorization
+      1.1 users
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-mood-tracker" class="md-nav__link">
+  <a href="#12-therapist_profiles" class="md-nav__link">
     <span class="md-ellipsis">
-      2.2 Mood Tracker
+      1.2 therapist_profiles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-recommendation-engine-rule-based" class="md-nav__link">
+  <a href="#13-availability_slots" class="md-nav__link">
     <span class="md-ellipsis">
-      2.3 Recommendation Engine (Rule-based)
+      1.3 availability_slots
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-therapist-module" class="md-nav__link">
+  <a href="#14-appointments" class="md-nav__link">
     <span class="md-ellipsis">
-      2.4 Therapist Module
+      1.4 appointments
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-appointment-booking" class="md-nav__link">
+  <a href="#15-mood_entries" class="md-nav__link">
     <span class="md-ellipsis">
-      2.5 Appointment Booking
+      1.5 mood_entries
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#26-admin-panel" class="md-nav__link">
+  <a href="#16-contents" class="md-nav__link">
     <span class="md-ellipsis">
-      2.6 Admin Panel
+      1.6 contents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-recommendation_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7 recommendation_rules
     </span>
   </a>
   
@@ -546,45 +712,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-functional-data-flow" class="md-nav__link">
+  <a href="#2-er-diagram" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Functional Data Flow
+      2. ER Diagram
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-key-functional-interfaces" class="md-nav__link">
+  <a href="#3-relationship-table" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Key Functional Interfaces
+      3. Relationship Table
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-constraints-assumptions" class="md-nav__link">
+  <a href="#4-index-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Constraints &amp; Assumptions
+      4. Index Summary
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-dependencies" class="md-nav__link">
+  <a href="#5-triggers" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Dependencies
+      5. Triggers
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-future-enhancements" class="md-nav__link">
+  <a href="#6-views-future-enhancements" class="md-nav__link">
     <span class="md-ellipsis">
-      7. Future Enhancements
+      6. Views (Future Enhancements)
     </span>
   </a>
   
@@ -606,12 +772,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../business/" class="md-nav__link">
+      <a href="../authentication/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Business Use Case
+    Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Design
     
   </span>
   
@@ -625,6 +814,50 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../edge-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Edge Cases &amp; Error Handling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../future/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Future Enhancements
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -648,292 +881,616 @@
   
 
 
-<h1 id="functional-design-document">Functional Design Document<a class="headerlink" href="#functional-design-document" title="Permanent link">¶</a></h1>
-<p><strong>Project Name:</strong> MindEase – Mood Tracking &amp; Therapy Booking System  </p>
+<h1 id="database-schema-documentation">Database Schema Documentation<a class="headerlink" href="#database-schema-documentation" title="Permanent link">¶</a></h1>
+<p>This document describes the complete database schema for the <strong>MindEase – Mood Tracking &amp; Therapy Booking System</strong>, including all tables, fields, relationships, types, and indexes.</p>
 <hr>
-<h2 id="1-functional-overview">1. Functional Overview<a class="headerlink" href="#1-functional-overview" title="Permanent link">¶</a></h2>
-<p>The functional design defines how MindEase implements its business requirements.<br>
-It details the app modules, their key features, workflows, and user interactions.</p>
-<hr>
-<h2 id="2-functional-modules">2. Functional Modules<a class="headerlink" href="#2-functional-modules" title="Permanent link">¶</a></h2>
-<h3 id="21-authentication-authorization">2.1 Authentication &amp; Authorization<a class="headerlink" href="#21-authentication-authorization" title="Permanent link">¶</a></h3>
+<h2 id="1-tables-and-fields">1. Tables and Fields<a class="headerlink" href="#1-tables-and-fields" title="Permanent link">¶</a></h2>
+<h3 id="11-users">1.1 users<a class="headerlink" href="#11-users" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Register / Login</td>
-<td>JWT-based email &amp; password authentication.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Unique user ID</td>
 </tr>
 <tr>
-<td>Email Verification</td>
-<td>Users receive confirmation links post-registration.</td>
+<td>username</td>
+<td>VARCHAR</td>
+<td>Username for display</td>
 </tr>
 <tr>
-<td>Password Reset</td>
-<td>Token/email-based password reset mechanism.</td>
+<td>email</td>
+<td>VARCHAR UNIQUE</td>
+<td>User’s email address</td>
 </tr>
 <tr>
-<td>Role Management</td>
-<td>Patient, Therapist, and Admin roles with role-based access control.</td>
+<td>password_hash</td>
+<td>VARCHAR</td>
+<td>Hashed password</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>VARCHAR</td>
+<td>First name</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>VARCHAR</td>
+<td>Last name</td>
+</tr>
+<tr>
+<td>role</td>
+<td>VARCHAR</td>
+<td>Defines role: <code>admin</code>, <code>therapist</code>, or <code>patient</code></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>BOOLEAN</td>
+<td>Active account status</td>
+</tr>
+<tr>
+<td>is_staff</td>
+<td>BOOLEAN</td>
+<td>Admin/staff flag</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Account creation timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Last update timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Workflow Summary:</strong><br>
-1. User registers → receives email verification link.<br>
-2. Upon verification → JWT token generated for secure API access.<br>
-3. User logs in and accesses modules as per role permissions.  </p>
+<p><strong>Indexes:</strong><br>
+- <code>ux_users_email_lower</code> on <code>lower(email)</code> → Fast login and uniqueness check  </p>
 <hr>
-<h3 id="22-mood-tracker">2.2 Mood Tracker<a class="headerlink" href="#22-mood-tracker" title="Permanent link">¶</a></h3>
+<h3 id="12-therapist_profiles">1.2 therapist_profiles<a class="headerlink" href="#12-therapist_profiles" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Add Mood Entry</td>
-<td>Patients log daily mood (1–5 scale) with optional notes.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Therapist profile ID</td>
 </tr>
 <tr>
-<td>View Mood History</td>
-<td>Visualize historical data in charts.</td>
+<td>user_id</td>
+<td>INT FK(users.id)</td>
+<td>Linked user</td>
 </tr>
 <tr>
-<td>Edit Entry</td>
-<td>Modify past logs if necessary.</td>
+<td>specialization</td>
+<td>VARCHAR</td>
+<td>Area of expertise</td>
 </tr>
 <tr>
-<td>Weekly Analytics</td>
-<td>Display 7-day mood average and trends.</td>
+<td>experience_years</td>
+<td>INT</td>
+<td>Years of experience</td>
+</tr>
+<tr>
+<td>consultation_mode</td>
+<td>VARCHAR</td>
+<td>Online / In-person</td>
+</tr>
+<tr>
+<td>about</td>
+<td>TEXT</td>
+<td>Therapist bio</td>
+</tr>
+<tr>
+<td>clinic_address</td>
+<td>TEXT</td>
+<td>Clinic or contact address</td>
+</tr>
+<tr>
+<td>is_approved</td>
+<td>BOOLEAN</td>
+<td>Approved by admin</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Profile creation time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Last profile update</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Workflow Summary:</strong><br>
-- User submits mood entry → data stored in <code>MOOD_ENTRY</code>.<br>
-- API calculates weekly mood average and trend.<br>
-- Dashboard displays mood analytics with chart visuals.</p>
+<p><strong>Indexes:</strong><br>
+- <code>ux_therapist_user</code> UNIQUE(user_id) → One profile per therapist<br>
+- <code>ix_therapist_specialization_approved</code> on <code>(specialization, is_approved)</code> → Filter by specialization &amp; approval  </p>
 <hr>
-<h3 id="23-recommendation-engine-rule-based">2.3 Recommendation Engine (Rule-based)<a class="headerlink" href="#23-recommendation-engine-rule-based" title="Permanent link">¶</a></h3>
+<h3 id="13-availability_slots">1.3 availability_slots<a class="headerlink" href="#13-availability_slots" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Content Suggestions</td>
-<td>Display mindfulness tips based on mood trends.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Slot ID</td>
 </tr>
 <tr>
-<td>Content Management</td>
-<td>Admin adds, edits, or deletes mindfulness resources.</td>
+<td>therapist_id</td>
+<td>INT FK(therapist_profiles.id)</td>
+<td>Associated therapist</td>
 </tr>
 <tr>
-<td>Feed Display</td>
-<td>Patient sees motivational tips and exercises on dashboard.</td>
+<td>day_of_week</td>
+<td>INT</td>
+<td>Day number (0–6)</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>TIME</td>
+<td>Start time</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>TIME</td>
+<td>End time</td>
+</tr>
+<tr>
+<td>status</td>
+<td>VARCHAR</td>
+<td><code>available</code> or <code>booked</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Creation timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Last update timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Logic Example:</strong><br>
-- If average mood &lt; 3 → show uplifting content.<br>
-- If average mood ≥ 3 → show maintenance or gratitude prompts.  </p>
+<p><strong>Indexes:</strong><br>
+- <code>ix_slots_therapist_day_available</code> on <code>(therapist_id, day_of_week, start_time)</code> → Fast fetch of available slots  </p>
 <hr>
-<h3 id="24-therapist-module">2.4 Therapist Module<a class="headerlink" href="#24-therapist-module" title="Permanent link">¶</a></h3>
+<h3 id="14-appointments">1.4 appointments<a class="headerlink" href="#14-appointments" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Profile Setup</td>
-<td>Therapist adds specialization, experience, and availability.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Appointment ID</td>
 </tr>
 <tr>
-<td>View Appointments</td>
-<td>View upcoming and completed sessions.</td>
+<td>therapist_id</td>
+<td>INT FK(therapist_profiles.id)</td>
+<td>Therapist handling session</td>
 </tr>
 <tr>
-<td>Add Session Notes</td>
-<td>Document confidential feedback for users post-session.</td>
+<td>user_id</td>
+<td>INT FK(users.id)</td>
+<td>User (patient) booking</td>
+</tr>
+<tr>
+<td>slot_id</td>
+<td>INT FK(availability_slots.id)</td>
+<td>Linked slot</td>
+</tr>
+<tr>
+<td>appointment_date</td>
+<td>DATE</td>
+<td>Date of appointment</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>TIME</td>
+<td>Time of appointment</td>
+</tr>
+<tr>
+<td>status</td>
+<td>VARCHAR</td>
+<td><code>pending</code>, <code>confirmed</code>, <code>cancelled</code>, <code>completed</code></td>
+</tr>
+<tr>
+<td>therapist_note</td>
+<td>TEXT</td>
+<td>Session notes</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Updated timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Workflow Summary:</strong><br>
-- Therapist updates profile → data reflected in the therapist directory.<br>
-- Patients book sessions → visible in therapist dashboard.<br>
-- Therapist adds session notes → visible only to the corresponding patient.</p>
+<p><strong>Indexes:</strong><br>
+- <code>ux_appt_therapist_date_time</code> UNIQUE(therapist_id, appointment_date, time_slot) → Prevents double booking<br>
+- <code>ix_appt_user_date</code> on <code>(user_id, appointment_date DESC)</code> → Lists recent appointments  </p>
 <hr>
-<h3 id="25-appointment-booking">2.5 Appointment Booking<a class="headerlink" href="#25-appointment-booking" title="Permanent link">¶</a></h3>
+<h3 id="15-mood_entries">1.5 mood_entries<a class="headerlink" href="#15-mood_entries" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Therapist Directory</td>
-<td>Patients browse and filter therapists by specialization.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Mood entry ID</td>
 </tr>
 <tr>
-<td>Book Appointment</td>
-<td>Patient selects date/time → receives confirmation email.</td>
+<td>user_id</td>
+<td>INT FK(users.id)</td>
+<td>Linked user</td>
 </tr>
 <tr>
-<td>Cancel Appointment</td>
-<td>Cancellation allowed before consultation.</td>
+<td>mood_score</td>
+<td>INT</td>
+<td>Rating from 1–5</td>
 </tr>
 <tr>
-<td>View Appointment History</td>
-<td>Displays upcoming and past appointments.</td>
+<td>note</td>
+<td>TEXT</td>
+<td>Optional mood note</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>DATE</td>
+<td>Entry creation date</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Last modification</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Workflow Summary:</strong><br>
-- Patient searches therapist → books available slot.<br>
-- Email confirmation triggered via SMTP.<br>
-- Appointment status managed as Pending/Confirmed/Cancelled/Completed.  </p>
+<p><strong>Indexes:</strong><br>
+- <code>ux_mood_user_date</code> UNIQUE(user_id, created_at) → One entry per user per day<br>
+- <code>ix_mood_user_date_desc</code> on <code>(user_id, created_at DESC)</code> → Fast recent mood history  </p>
 <hr>
-<h3 id="26-admin-panel">2.6 Admin Panel<a class="headerlink" href="#26-admin-panel" title="Permanent link">¶</a></h3>
+<h3 id="16-contents">1.6 contents<a class="headerlink" href="#16-contents" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Feature</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Manage Patients/Therapists</td>
-<td>Admin performs CRUD on user accounts.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Content ID</td>
 </tr>
 <tr>
-<td>Content Approval</td>
-<td>Admin reviews and approves mindfulness content.</td>
+<td>title</td>
+<td>VARCHAR</td>
+<td>Tip or content title</td>
 </tr>
 <tr>
-<td>Analytics Dashboard</td>
-<td>Displays usage metrics and mood trends.</td>
+<td>description</td>
+<td>TEXT</td>
+<td>Content body</td>
+</tr>
+<tr>
+<td>category</td>
+<td>VARCHAR</td>
+<td>Content category (e.g., uplifting, calming)</td>
+</tr>
+<tr>
+<td>is_approved</td>
+<td>BOOLEAN</td>
+<td>Approved for recommendation</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Updated timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Admin Capabilities:</strong><br>
-- Activate/deactivate users.<br>
-- Approve or reject new content.<br>
-- Generate reports for engagement and platform activity.</p>
+<p><strong>Indexes:</strong><br>
+- <code>ix_content_approved_category</code> on <code>(is_approved, category)</code> → Fetch approved content quickly  </p>
 <hr>
-<h2 id="3-functional-data-flow">3. Functional Data Flow<a class="headerlink" href="#3-functional-data-flow" title="Permanent link">¶</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>User → Register → Email Verification → Login (JWT)
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> → Add Mood Entry → Analytics Engine → Mood Insights
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> → Recommendation Engine → Personalized Feed
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> → Therapist Selection → Appointment Booking → Confirmation Email
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> → Therapist Notes → User Dashboard
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> → Admin Oversight → Reports &amp; Analytics
-</code></pre></div>
-<hr>
-<h2 id="4-key-functional-interfaces">4. Key Functional Interfaces<a class="headerlink" href="#4-key-functional-interfaces" title="Permanent link">¶</a></h2>
+<h3 id="17-recommendation_rules">1.7 recommendation_rules<a class="headerlink" href="#17-recommendation_rules" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Interface</th>
-<th>Source</th>
-<th>Destination</th>
+<th>Field</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Auth API</td>
-<td>Frontend</td>
-<td>Backend</td>
-<td>Manages JWT token issuance and user login.</td>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Rule ID</td>
 </tr>
 <tr>
-<td>Mood API</td>
-<td>Frontend</td>
-<td>Backend</td>
-<td>Handles CRUD for mood entries and analytics.</td>
+<td>rule_name</td>
+<td>VARCHAR</td>
+<td>Rule name</td>
 </tr>
 <tr>
-<td>Email API</td>
-<td>Backend</td>
-<td>SMTP (Mailtrap/Gmail)</td>
-<td>Sends verification and reset emails.</td>
+<td>condition_expr</td>
+<td>TEXT</td>
+<td>Logic condition expression</td>
 </tr>
 <tr>
-<td>Appointment API</td>
-<td>Frontend</td>
-<td>Backend</td>
-<td>Manages therapist booking operations.</td>
+<td>category_to_show</td>
+<td>VARCHAR</td>
+<td>Recommended category</td>
 </tr>
 <tr>
-<td>Admin API</td>
-<td>Backend</td>
-<td>Database</td>
-<td>Performs data management and analytics queries.</td>
+<td>is_active</td>
+<td>BOOLEAN</td>
+<td>Active/inactive status</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Updated timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Indexes:</strong><br>
+- <code>ix_recommendation_rules_active</code> on <code>(is_active)</code> → Fetch only active rules  </p>
 <hr>
-<h2 id="5-constraints-assumptions">5. Constraints &amp; Assumptions<a class="headerlink" href="#5-constraints-assumptions" title="Permanent link">¶</a></h2>
-<ul>
-<li>Patients must verify their email before accessing main features.  </li>
-<li>Therapists are verified manually by Admins.  </li>
-<li>The rule-based recommendation engine will later evolve into an AI-powered model.  </li>
-<li>System uptime must remain above 99%.  </li>
-</ul>
+<h2 id="2-er-diagram">2. ER Diagram<a class="headerlink" href="#2-er-diagram" title="Permanent link">¶</a></h2>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/database-schema.png" data-desc-position="bottom"><img alt="Database Schema" src="../../assets/images/database-schema.png"></a></p>
 <hr>
-<h2 id="6-dependencies">6. Dependencies<a class="headerlink" href="#6-dependencies" title="Permanent link">¶</a></h2>
+<h2 id="3-relationship-table">3. Relationship Table<a class="headerlink" href="#3-relationship-table" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th>Component</th>
+<th>Source Table</th>
+<th>Target Table</th>
+<th>Relationship</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Django REST Framework</td>
-<td>API development backbone.</td>
+<td><strong>users</strong></td>
+<td><strong>therapist_profiles</strong></td>
+<td>1 → 0..1</td>
+<td>A user may have one therapist profile</td>
 </tr>
 <tr>
-<td>PostgreSQL</td>
-<td>Primary data store for user and mood data.</td>
+<td><strong>therapist_profiles</strong></td>
+<td><strong>availability_slots</strong></td>
+<td>1 → N</td>
+<td>Therapist publishes many slots</td>
 </tr>
 <tr>
-<td>React.js</td>
-<td>Frontend PWA interface.</td>
+<td><strong>therapist_profiles</strong></td>
+<td><strong>appointments</strong></td>
+<td>1 → N</td>
+<td>Therapist handles many appointments</td>
 </tr>
 <tr>
-<td>SMTP (Mailtrap/Gmail)</td>
-<td>Email sending service.</td>
+<td><strong>users</strong></td>
+<td><strong>appointments</strong></td>
+<td>1 → N</td>
+<td>A user books multiple appointments</td>
 </tr>
 <tr>
-<td>JWT</td>
-<td>Secure authentication tokens.</td>
+<td><strong>availability_slots</strong></td>
+<td><strong>appointments</strong></td>
+<td>1 → N</td>
+<td>Slot can link to multiple appointments</td>
+</tr>
+<tr>
+<td><strong>users</strong></td>
+<td><strong>mood_entries</strong></td>
+<td>1 → N</td>
+<td>User logs multiple moods</td>
+</tr>
+<tr>
+<td><strong>users</strong></td>
+<td><strong>contents</strong></td>
+<td>1 → N</td>
+<td>Admin creates multiple contents</td>
+</tr>
+<tr>
+<td><strong>recommendation_rules</strong></td>
+<td><strong>contents</strong></td>
+<td>Logical</td>
+<td>Rules filter or suggest contents</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<h2 id="7-future-enhancements">7. Future Enhancements<a class="headerlink" href="#7-future-enhancements" title="Permanent link">¶</a></h2>
-<ul>
-<li>AI-driven mood prediction and smart recommendations.  </li>
-<li>Integration with wearable devices for passive mood sensing.  </li>
-<li>Chatbot-based counseling assistance.  </li>
-</ul>
+<h2 id="4-index-summary">4. Index Summary<a class="headerlink" href="#4-index-summary" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Index Name</th>
+<th>Table</th>
+<th>Fields</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ux_users_email_lower</code></td>
+<td>users</td>
+<td>lower(email)</td>
+<td>Fast login lookup</td>
+</tr>
+<tr>
+<td><code>ux_therapist_user</code></td>
+<td>therapist_profiles</td>
+<td>user_id</td>
+<td>One profile per therapist</td>
+</tr>
+<tr>
+<td><code>ix_therapist_specialization_approved</code></td>
+<td>therapist_profiles</td>
+<td>specialization, is_approved</td>
+<td>Filter therapists</td>
+</tr>
+<tr>
+<td><code>ix_slots_therapist_day_available</code></td>
+<td>availability_slots</td>
+<td>therapist_id, day_of_week, start_time</td>
+<td>Fetch available slots</td>
+</tr>
+<tr>
+<td><code>ux_appt_therapist_date_time</code></td>
+<td>appointments</td>
+<td>therapist_id, appointment_date, time_slot</td>
+<td>Prevent double booking</td>
+</tr>
+<tr>
+<td><code>ix_appt_user_date</code></td>
+<td>appointments</td>
+<td>user_id, appointment_date</td>
+<td>Retrieve recent appointments</td>
+</tr>
+<tr>
+<td><code>ux_mood_user_date</code></td>
+<td>mood_entries</td>
+<td>user_id, created_at</td>
+<td>One entry per day</td>
+</tr>
+<tr>
+<td><code>ix_content_approved_category</code></td>
+<td>contents</td>
+<td>is_approved, category</td>
+<td>Fast content fetch</td>
+</tr>
+<tr>
+<td><code>ux_email_token</code></td>
+<td>email_tokens</td>
+<td>token</td>
+<td>Token validation</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-triggers">5. Triggers<a class="headerlink" href="#5-triggers" title="Permanent link">¶</a></h2>
+<p><strong>set_updated_at()</strong><br>
+Automatically updates the <code>updated_at</code> field on every row modification.  </p>
+<p><strong>Applied On:</strong><br>
+- <code>users</code><br>
+- <code>therapist_profiles</code><br>
+- <code>availability_slots</code><br>
+- <code>appointments</code><br>
+- <code>contents</code><br>
+- <code>mood_entries</code></p>
+<p><strong>Why:</strong> Ensures consistent timestamps without backend logic repetition.</p>
+<hr>
+<h2 id="6-views-future-enhancements">6. Views (Future Enhancements)<a class="headerlink" href="#6-views-future-enhancements" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>View Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>active_therapists_view</code></td>
+<td>Lists all approved therapists with available slots.</td>
+</tr>
+<tr>
+<td><code>mood_trend_view</code></td>
+<td>Aggregates last 7-day average moods per user.</td>
+</tr>
+<tr>
+<td><code>upcoming_appointments_view</code></td>
+<td>Displays all confirmed appointments for current week.</td>
+</tr>
+</tbody>
+</table>
 <hr>
 
 
@@ -979,7 +1536,7 @@ It details the app modules, their key features, workflows, and user interactions
       <a href="../../index.html">Home</a>
     </div>
     <div class="footer-right">
-      © 2025 MindEase · v{'provider': 'mkdocs'}
+      © 2025 MindEase 
     </div>
   </div>
 </footer>

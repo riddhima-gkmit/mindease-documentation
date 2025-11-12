@@ -9,26 +9,28 @@
         <meta name="author" content="Riddhima Kushwah">
       
       
-        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/">
+        <link rel="canonical" href="https://riddhima-gkmit.github.io/mindease-documentation/technical/data-flow/">
       
       
+        <link rel="prev" href="../architecture/">
       
-        <link rel="next" href="functional-docs/">
+      
+        <link rel="next" href="../schema-design/">
       
       
-      <link rel="icon" href="assets/favicon.png">
+      <link rel="icon" href="../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>MindEase Documentation</title>
+        <title>Data Flow - MindEase Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -47,16 +49,16 @@
       
     
     
-      <link rel="stylesheet" href="theme/extra.css">
+      <link rel="stylesheet" href="../../theme/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
             html.glightbox-open { overflow: initial; height: 100%; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
@@ -85,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mindease" class="md-skip">
+        <a href="#system-data-flow" class="md-skip">
           Skip to content
         </a>
       
@@ -103,9 +105,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="MindEase Documentation" class="md-header__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
+    <a href="../.." title="MindEase Documentation" class="md-header__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="assets/images/mindease-logo.png" alt="logo">
+  <img src="../../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -122,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Data Flow
             
           </span>
         </div>
@@ -233,11 +235,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -256,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="functional-docs/" class="md-tabs__link">
+      <a href="../../functional-docs/" class="md-tabs__link">
         
   
   
@@ -275,7 +275,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="use-cases/" class="md-tabs__link">
+      <a href="../../use-cases/" class="md-tabs__link">
         
   
   
@@ -292,11 +292,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="technical/tech-stack/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../tech-stack/" class="md-tabs__link">
           
   
   
@@ -314,7 +316,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="edge-cases/" class="md-tabs__link">
+      <a href="../../edge-cases/" class="md-tabs__link">
         
   
   
@@ -333,7 +335,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="future/" class="md-tabs__link">
+      <a href="../../future/" class="md-tabs__link">
         
   
   
@@ -370,9 +372,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="MindEase Documentation" class="md-nav__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
+    <a href="../.." title="MindEase Documentation" class="md-nav__button md-logo" aria-label="MindEase Documentation" data-md-component="logo">
       
-  <img src="assets/images/mindease-logo.png" alt="logo">
+  <img src="../../assets/images/mindease-logo.png" alt="logo">
 
     </a>
     MindEase Documentation
@@ -396,32 +398,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -432,68 +412,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Problem
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-solution-mindease" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Solution — MindEase
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Solution — MindEase">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Features
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Overview
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -505,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="functional-docs/" class="md-nav__link">
+      <a href="../../functional-docs/" class="md-nav__link">
         
   
   
@@ -527,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="use-cases/" class="md-nav__link">
+      <a href="../../use-cases/" class="md-nav__link">
         
   
   
@@ -546,26 +464,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -578,7 +501,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Technical Docs
@@ -592,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/tech-stack/" class="md-nav__link">
+      <a href="../tech-stack/" class="md-nav__link">
         
   
   
@@ -615,7 +538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -635,10 +558,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="technical/data-flow/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Data Flow
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -649,6 +594,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-how-mindease-works-behind-the-scenes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding How MindEase Works Behind the Scenes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -661,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/schema-design/" class="md-nav__link">
+      <a href="../schema-design/" class="md-nav__link">
         
   
   
@@ -684,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/authentication/" class="md-nav__link">
+      <a href="../authentication/" class="md-nav__link">
         
   
   
@@ -707,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="technical/api-design/" class="md-nav__link">
+      <a href="../api-design/" class="md-nav__link">
         
   
   
@@ -737,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="edge-cases/" class="md-nav__link">
+      <a href="../../edge-cases/" class="md-nav__link">
         
   
   
@@ -759,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="future/" class="md-nav__link">
+      <a href="../../future/" class="md-nav__link">
         
   
   
@@ -793,69 +767,49 @@
   
 
 
-<h1 id="mindease">MindEase<a class="headerlink" href="#mindease" title="Permanent link">¶</a></h1>
-<p><strong>A simple, web-based system for mood tracking, therapist booking, and personalized wellness recommendations.</strong></p>
+<h1 id="system-data-flow">System Data Flow<a class="headerlink" href="#system-data-flow" title="Permanent link">¶</a></h1>
+<h2 id="understanding-how-mindease-works-behind-the-scenes">Understanding How MindEase Works Behind the Scenes<a class="headerlink" href="#understanding-how-mindease-works-behind-the-scenes" title="Permanent link">¶</a></h2>
+<p>This section provides a visual overview of how information moves through the <strong>MindEase</strong> platform —<br>
+from user actions on the frontend (PWA) to backend processing in Django, database interactions, and supporting services like email, recommendations, and analytics.</p>
+<p>Below is the <strong>overall data flow diagram</strong>, followed by detailed module-level flows explaining each major feature in the system.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/data-flow-diagram.png" data-desc-position="bottom"><img alt="Authentication Flow" src="../../assets/images/data-flow-diagram.png"></a></p>
 <hr>
-<h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
-<p>People seeking mental wellness and small clinics face three main challenges:</p>
-<ol>
-<li>
-<p><strong>Fragmented Mood Tracking &amp; No Context</strong><br>
-   Users track feelings manually or not at all — no reliable daily history, making it hard to spot trends or triggers.</p>
-</li>
-<li>
-<p><strong>Manual Appointment Scheduling</strong><br>
-   Booking exchanges (calls/messages) are slow and error-prone. Therapists and patients lose time coordinating.</p>
-</li>
-<li>
-<p><strong>No Personalized Guidance</strong><br>
-   Users receive generic tips or none at all; clinicians lack quick insight-driven suggestions based on recent mood history.</p>
-</li>
-</ol>
+<h1 id="data-flow-diagrams">Data Flow Diagrams<a class="headerlink" href="#data-flow-diagrams" title="Permanent link">¶</a></h1>
+<p>This section visually explains how data moves across different modules in the MindEase system.<br>
+Each diagram below represents the end-to-end flow between the user interface, backend APIs, and database.</p>
 <hr>
-<h2 id="the-solution-mindease">The Solution — MindEase<a class="headerlink" href="#the-solution-mindease" title="Permanent link">¶</a></h2>
-<p>MindEase automates daily mood tracking, appointment booking, and delivers simple, rule-based recommendations. It consists of three main parts:</p>
-<ul>
-<li><strong>Mood Tracking:</strong> Quick daily entries (emoji/score + note) stored as history.  </li>
-<li><strong>Appointment Booking:</strong> Browse therapists, book confirmed slots, and receive email confirmations.  </li>
-<li><strong>Recommendations:</strong> Rule-based tips delivered from recent 7-day mood trends.</li>
-</ul>
-<h3 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">¶</a></h3>
-<ul>
-<li>Email + JWT authentication and role-based access (patient / therapist / admin)  </li>
-<li>One-entry-per-day mood logging with a weekly analytics endpoint  </li>
-<li>Therapist profiles + availability and approval workflow for admins  </li>
-<li>Appointment booking with conflict prevention and session notes  </li>
-<li>Admin-managed content library and rule-based recommendations</li>
-</ul>
+<h2 id="authentication-email-verification">Authentication &amp; Email Verification<a class="headerlink" href="#authentication-email-verification" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Handles user registration, email verification, and account activation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/user-registration-and-email-verification.png" data-desc-position="bottom"><img alt="Authentication Flow" src="../../assets/images/user-registration-and-email-verification.png"></a></p>
 <hr>
-<h2 id="quick-overview">Quick Overview<a class="headerlink" href="#quick-overview" title="Permanent link">¶</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Patient</label><label for="__tabbed_1_2">Therapist</label><label for="__tabbed_1_3">Admin</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li>Register/login (email verification, reset password)  </li>
-<li>Log daily mood (1–5), view trends  </li>
-<li>Browse therapists, book/cancel appointments  </li>
-<li>Receive mindful tips based on mood patterns</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Create profile (specialization, experience, slots)  </li>
-<li>See upcoming and past appointments  </li>
-<li>Add session notes (visible to that Patient)</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>Manage Patients/therapists  </li>
-<li>Approve mindfulness content  </li>
-<li>Platform analytics dashboard</li>
-</ul>
-</div>
-</div>
-</div>
+<h2 id="user-login-jwt">User Login (JWT)<a class="headerlink" href="#user-login-jwt" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Users log in using email and password to receive secure JWT tokens for session management.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/user-login.png" data-desc-position="bottom"><img alt="Login Flow" src="../../assets/images/user-login.png"></a></p>
+<hr>
+<h2 id="mood-tracker">Mood Tracker<a class="headerlink" href="#mood-tracker" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Users log their daily mood, and data is stored and analyzed for weekly trends.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/add-mood-entry.png" data-desc-position="bottom"><img alt="Mood Tracker Flow" src="../../assets/images/add-mood-entry.png"></a></p>
+<hr>
+<h2 id="recommendation-engine">Recommendation Engine<a class="headerlink" href="#recommendation-engine" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Suggests mindfulness content based on user’s recent mood patterns.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/recommendation-fetch%28rule-based%29.png" data-desc-position="bottom"><img alt="Recommendation Flow" src="../../assets/images/recommendation-fetch%28rule-based%29.png"></a></p>
+<hr>
+<h2 id="therapist-module">Therapist Module<a class="headerlink" href="#therapist-module" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Therapists set up profiles and availability; admins approve profiles before listing.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/therapist-profile-and-approval.png" data-desc-position="bottom"><img alt="Therapist Module Flow" src="../../assets/images/therapist-profile-and-approval.png"></a></p>
+<hr>
+<h2 id="appointment-booking">Appointment Booking<a class="headerlink" href="#appointment-booking" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Patients book available therapy sessions; confirmation emails are sent automatically.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/appointment-booking.png" data-desc-position="bottom"><img alt="Appointment Booking Flow" src="../../assets/images/appointment-booking.png"></a></p>
+<hr>
+<h2 id="admin-panel">Admin Panel<a class="headerlink" href="#admin-panel" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Admin manages users, content, therapists, and views platform-wide analytics.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/admin-approve-content.png" data-desc-position="bottom"><img alt="Admin Panel Flow" src="../../assets/images/admin-approve-content.png"></a></p>
+<hr>
+<h2 id="password-reset">Password Reset<a class="headerlink" href="#password-reset" title="Permanent link">¶</a></h2>
+<p><strong>Flow Summary:</strong> Users reset passwords via email token validation.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/password-reset.png" data-desc-position="bottom"><img alt="Password Reset Flow" src="../../assets/images/password-reset.png"></a></p>
+<hr>
 
 
 
@@ -897,7 +851,7 @@
       &nbsp;•&nbsp;
       <a href="https://github.com/riddhima-gkmit/mindease-documentation//issues">Issues</a>
       &nbsp;•&nbsp;
-      <a href="./index.html">Home</a>
+      <a href="../../index.html">Home</a>
     </div>
     <div class="footer-right">
       © 2025 MindEase 
@@ -913,12 +867,12 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mkdocs"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.integrate"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mkdocs"}}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
-        <script src="theme/extra.js"></script>
+        <script src="../../theme/extra.js"></script>
       
     
   

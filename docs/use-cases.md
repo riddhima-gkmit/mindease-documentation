@@ -51,7 +51,7 @@
 
 1. User logs into the system.  
 2. Opens the **Mood Tracker** section.  
-3. Selects a mood score (1–5 emoji scale).  
+3. Selects a mood score (1-5 emoji scale).  
 4. Optionally adds a short note about their day.  
 5. Clicks **Save Entry**.  
 6. System stores the entry and updates 7-day analytics.
