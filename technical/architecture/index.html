@@ -588,9 +588,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#aws-deployment-overview" class="md-nav__link">
+  <a href="#deployment-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      AWS Deployment Overview
+      Deployment Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Flow
     </span>
   </a>
   
@@ -609,6 +618,24 @@
   <a href="#deployment-summary" class="md-nav__link">
     <span class="md-ellipsis">
       Deployment Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI/CD Workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalability-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scalability Recommendations
     </span>
   </a>
   
@@ -786,130 +813,126 @@
 
 
 <h1 id="aws-specific-architecture-diagram">AWS-Specific Architecture Diagram<a class="headerlink" href="#aws-specific-architecture-diagram" title="Permanent link">¶</a></h1>
-<p>The <strong>MindEase</strong> platform is deployed on <strong>Amazon Web Services (AWS)</strong> using a secure and scalable <strong>three-tier architecture</strong>.<br>
-It separates the application into layers — <strong>presentation</strong>, <strong>application logic</strong>, and <strong>data storage</strong> — all hosted within a protected <strong>Virtual Private Cloud (VPC)</strong>.</p>
+<p>The <strong>MindEase</strong> platform is deployed using a <strong>hybrid cloud model</strong> that leverages <strong>Vercel</strong> for the frontend and <strong>Amazon Web Services (AWS)</strong> for the backend infrastructure.<br>
+This setup ensures scalability, performance, and continuous deployment through <strong>GitHub Actions</strong>.</p>
 <hr>
-<h2 id="aws-deployment-overview">AWS Deployment Overview<a class="headerlink" href="#aws-deployment-overview" title="Permanent link">¶</a></h2>
+<h2 id="deployment-overview">Deployment Overview<a class="headerlink" href="#deployment-overview" title="Permanent link">¶</a></h2>
 <ul>
 <li>
-<p><strong>Amazon VPC (Virtual Private Cloud):</strong><br>
-  Provides a logically isolated environment that hosts all MindEase components.<br>
-  Both backend and database are shielded from direct internet access inside private subnets.</p>
+<p><strong>Frontend (Vercel):</strong><br>
+  The <strong>React (Next.js) Progressive Web App (PWA)</strong> is hosted on <strong>Vercel</strong>, which provides automatic builds, caching, and edge network distribution for fast user access worldwide.</p>
+</li>
+<li>
+<p><strong>Backend (AWS EC2):</strong><br>
+  The <strong>Django REST Framework (DRF)</strong> backend runs on an <strong>Amazon EC2 instance</strong> inside a <strong>Virtual Private Cloud (VPC)</strong> for secure and scalable API operations.</p>
+</li>
+<li>
+<p><strong>Database (Amazon RDS – PostgreSQL):</strong><br>
+  Stores all persistent data such as users, therapists, appointments, moods, and recommendations.<br>
+  The database resides within the same <strong>VPC</strong> for low-latency and secure communication.</p>
+</li>
+<li>
+<p><strong>Virtual Private Cloud (VPC):</strong><br>
+  The EC2 and RDS instances are isolated inside a <strong>VPC</strong>, ensuring network-level security.<br>
+  The EC2 instance resides in a <strong>public subnet</strong> to allow controlled API access.</p>
 </li>
 <li>
 <p><strong>Public Subnet:</strong><br>
-  Hosts the <strong>Application Load Balancer (ALB)</strong>, which serves as the single entry point for all user requests.<br>
-  It forwards traffic to EC2 instances in private subnets while ensuring HTTPS security.</p>
-</li>
-<li>
-<p><strong>Application Load Balancer (ALB):</strong><br>
-  Manages and distributes incoming requests from users to the EC2 instance running the MindEase application.<br>
-  Ensures load distribution, fault tolerance, and secure SSL/TLS termination.</p>
-</li>
-<li>
-<p><strong>Private Subnet:</strong><br>
-  Contains the <strong>Amazon EC2</strong> instance that runs both the <strong>Django REST backend</strong> and the <strong>React frontend (PWA)</strong>.<br>
-  This subnet is not directly accessible from the internet, ensuring security of business logic and APIs.</p>
-</li>
-<li>
-<p><strong>Amazon EC2 Instance:</strong><br>
-  Hosts both <strong>frontend and backend</strong> applications for simplicity in initial deployment.<br>
-  Future scaling can separate these into independent services.<br>
-  The instance interacts with Amazon RDS for database operations and S3 for static/media files.</p>
-</li>
-<li>
-<p><strong>Amazon RDS (PostgreSQL):</strong><br>
-  Stores all persistent data — users, therapists, appointments, moods, and recommendations.<br>
-  It resides in the same private subnet for secure, low-latency communication with the EC2 instance.</p>
-</li>
-<li>
-<p><strong>Amazon S3 Bucket:</strong><br>
-  Used to store static assets such as images, therapist profile photos, and uploaded media files.</p>
+  The <strong>public subnet</strong> enables internet access for the EC2 instance (backend), allowing Vercel-hosted frontend to communicate securely via HTTPS.</p>
 </li>
 <li>
 <p><strong>GitHub Actions (CI/CD):</strong><br>
-  Automates deployment pipelines — when code is pushed to the frontend or backend repositories,<br>
-  GitHub Actions builds and deploys to EC2 using secure SSH or configured runner.<br>
-  This ensures continuous delivery and minimal downtime.</p>
+  Automated deployment pipelines ensure smooth updates.<br>
+  When code is pushed to the backend repository, <strong>GitHub Actions</strong> deploys the latest version to EC2 using SSH-based workflows.</p>
 </li>
 <li>
 <p><strong>User Access:</strong><br>
-  End users connect to MindEase through the <strong>Application Load Balancer</strong>, which securely routes requests to the EC2 instance.<br>
-  The app is accessed via a web browser or mobile device (PWA) over HTTPS.</p>
+  Users access the MindEase web app via <strong>Vercel</strong>, which communicates with the <strong>AWS backend APIs</strong> hosted on EC2.<br>
+  All data requests (authentication, mood logs, appointments, etc.) flow securely between Vercel → EC2 → RDS.</p>
 </li>
 </ul>
 <hr>
+<h2 id="architecture-flow">Architecture Flow<a class="headerlink" href="#architecture-flow" title="Permanent link">¶</a></h2>
+<ol>
+<li><strong>Users</strong> interact with the <strong>MindEase frontend</strong> hosted on <strong>Vercel</strong>.  </li>
+<li>The <strong>frontend</strong> sends API requests to the <strong>backend</strong> running on an <strong>Amazon EC2 instance</strong> inside a <strong>VPC (Public Subnet)</strong>.  </li>
+<li>The <strong>backend (EC2)</strong> communicates with <strong>Amazon RDS (PostgreSQL)</strong> to store and retrieve application data.  </li>
+<li><strong>GitHub Actions</strong> automatically deploys backend code changes to EC2 whenever updates are pushed to the repository.</li>
+</ol>
+<hr>
 <h2 id="architecture-diagram">Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">¶</a></h2>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/architecture-diagram.png" data-desc-position="bottom"><img alt="AWS Architecture" src="../../assets/images/architecture-diagram.png"></a></p>
-<p><em>Figure: AWS-based deployment architecture of the MindEase system.</em></p>
+<p><em>Figure: Hybrid deployment of MindEase using Vercel for frontend and AWS (EC2 + RDS) for backend.</em></p>
 <hr>
 <h2 id="deployment-summary">Deployment Summary<a class="headerlink" href="#deployment-summary" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
 <th>Component</th>
-<th>AWS Service</th>
+<th>Platform / Service</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Frontend</strong></td>
-<td>Amazon EC2</td>
-<td>Hosts the React PWA (web interface)</td>
+<td><strong>Vercel</strong></td>
+<td>Hosts the React.js &amp; PWA for user access</td>
 </tr>
 <tr>
 <td><strong>Backend</strong></td>
-<td>Amazon EC2</td>
+<td><strong>Amazon EC2</strong></td>
 <td>Runs Django REST Framework APIs</td>
 </tr>
 <tr>
 <td><strong>Database</strong></td>
-<td>Amazon RDS (PostgreSQL)</td>
-<td>Stores persistent user, therapist, and appointment data</td>
+<td><strong>Amazon RDS (PostgreSQL)</strong></td>
+<td>Stores persistent user and application data</td>
 </tr>
 <tr>
 <td><strong>Networking</strong></td>
-<td>VPC with Public &amp; Private Subnets</td>
-<td>Segregates frontend access and backend security layers</td>
-</tr>
-<tr>
-<td><strong>Storage</strong></td>
-<td>Amazon S3</td>
-<td>Stores static assets and media files</td>
-</tr>
-<tr>
-<td><strong>Load Balancing</strong></td>
-<td>Application Load Balancer (ALB)</td>
-<td>Routes and balances user traffic securely</td>
+<td><strong>Amazon VPC (Public Subnet)</strong></td>
+<td>Provides isolation and secure API communication</td>
 </tr>
 <tr>
 <td><strong>CI/CD</strong></td>
-<td>GitHub Actions</td>
+<td><strong>GitHub Actions</strong></td>
 <td>Automates testing and deployment to EC2</td>
 </tr>
 <tr>
 <td><strong>Users</strong></td>
-<td>Browser / Mobile (PWA)</td>
-<td>Access the platform via HTTPS endpoint</td>
+<td><strong>Browser / Mobile (PWA)</strong></td>
+<td>Access the MindEase app via Vercel frontend</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td><strong>GitHub</strong></td>
+<td>Maintains version control and triggers deployments</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<blockquote>
-<p><strong>Tip:</strong><br>
-The current setup supports both the <strong>React frontend</strong> and <strong>Django backend</strong> on the same EC2 instance for simplicity.<br>
-As the project scales, we can:<br>
-- Add <strong>Auto Scaling Groups</strong> for horizontal scaling<br>
-- Use <strong>CloudFront CDN</strong> for static content delivery<br>
-- Integrate <strong>AWS SES</strong> for sending transactional emails<br>
-- Move frontend to <strong>S3 + CloudFront</strong> for improved performance  </p>
-</blockquote>
+<h2 id="cicd-workflow">CI/CD Workflow<a class="headerlink" href="#cicd-workflow" title="Permanent link">¶</a></h2>
+<ol>
+<li>Developer commits changes to the <strong>backend GitHub repository</strong>.  </li>
+<li><strong>GitHub Actions</strong> workflow triggers automated build and test steps.  </li>
+<li>If successful, the workflow deploys updates to the <strong>EC2 instance</strong> via SSH.  </li>
+<li>The frontend (on Vercel) communicates with the updated API instantly.</li>
+</ol>
 <hr>
+<h2 id="scalability-recommendations">Scalability Recommendations<a class="headerlink" href="#scalability-recommendations" title="Permanent link">¶</a></h2>
+<p>As traffic grows, the system can be scaled easily:</p>
+<ul>
+<li><strong>Add EC2 instances</strong> behind a <strong>Load Balancer</strong> for horizontal scaling.  </li>
+<li><strong>Migrate frontend static files</strong> to <strong>S3 + CloudFront</strong> for faster global delivery.  </li>
+<li><strong>Enable RDS Read Replicas</strong> for improved database performance.  </li>
+<li><strong>Use AWS CloudWatch &amp; SNS</strong> for proactive monitoring and alerting.</li>
+</ul>
+<hr>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/future-architecture-diagram.png" data-desc-position="bottom"><img alt="AWS Architecture" src="../../assets/images/future-architecture-diagram.png"></a></p>
 <blockquote>
-<p><strong>Scalability Insight:</strong><br>
-The architecture allows future migration toward a <strong>multi-tier deployment</strong>,<br>
-where frontend, backend, and database are scaled independently across multiple EC2 instances for enhanced performance and reliability.</p>
+<p><strong>Summary:</strong><br>
+MindEase’s architecture combines <strong>Vercel’s high-performance frontend delivery</strong> with <strong>AWS’s secure and scalable backend infrastructure</strong>, ensuring a balance between development agility and enterprise-grade reliability.</p>
 </blockquote>
 <hr>
 

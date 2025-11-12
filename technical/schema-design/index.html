@@ -644,63 +644,90 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-users" class="md-nav__link">
+  <a href="#11-roles" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 users
+      1.1 roles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-therapist_profiles" class="md-nav__link">
+  <a href="#12-user_roles" class="md-nav__link">
     <span class="md-ellipsis">
-      1.2 therapist_profiles
+      1.2 user_roles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-availability_slots" class="md-nav__link">
+  <a href="#13-users" class="md-nav__link">
     <span class="md-ellipsis">
-      1.3 availability_slots
+      1.3 users
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#14-appointments" class="md-nav__link">
+  <a href="#14-therapist_profiles" class="md-nav__link">
     <span class="md-ellipsis">
-      1.4 appointments
+      1.4 therapist_profiles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#15-mood_entries" class="md-nav__link">
+  <a href="#15-availability_slots" class="md-nav__link">
     <span class="md-ellipsis">
-      1.5 mood_entries
+      1.5 availability_slots
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#16-contents" class="md-nav__link">
+  <a href="#16-appointments" class="md-nav__link">
     <span class="md-ellipsis">
-      1.6 contents
+      1.6 appointments
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#17-recommendation_rules" class="md-nav__link">
+  <a href="#17-mood_entries" class="md-nav__link">
     <span class="md-ellipsis">
-      1.7 recommendation_rules
+      1.7 mood_entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8 contents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-recommendation_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9 recommendation_rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-password_reset_tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10 password_reset_tokens
     </span>
   </a>
   
@@ -721,9 +748,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-relationship-table" class="md-nav__link">
+  <a href="#3-relationships" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Relationship Table
+      3. Relationships
     </span>
   </a>
   
@@ -882,10 +909,10 @@
 
 
 <h1 id="database-schema-documentation">Database Schema Documentation<a class="headerlink" href="#database-schema-documentation" title="Permanent link">¶</a></h1>
-<p>This document describes the complete database schema for the <strong>MindEase – Mood Tracking &amp; Therapy Booking System</strong>, including all tables, fields, relationships, types, and indexes.</p>
+<p>This document describes the complete database schema for the <strong>MindEase - Mood Tracking &amp; Therapy Booking System</strong>, including all tables, fields, relationships, indexes, and key constraints.</p>
 <hr>
 <h2 id="1-tables-and-fields">1. Tables and Fields<a class="headerlink" href="#1-tables-and-fields" title="Permanent link">¶</a></h2>
-<h3 id="11-users">1.1 users<a class="headerlink" href="#11-users" title="Permanent link">¶</a></h3>
+<h3 id="11-roles">1.1 roles<a class="headerlink" href="#11-roles" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -898,16 +925,101 @@
 <tr>
 <td>id</td>
 <td>SERIAL PK</td>
-<td>Unique user ID</td>
+<td>Auto-increment role ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>VARCHAR</td>
+<td>Role name (<code>admin</code>, <code>therapist</code>, <code>patient</code>)</td>
+</tr>
+<tr>
+<td>description</td>
+<td>TEXT</td>
+<td>Short description of the role</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Timestamp of creation</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Last updated timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong><br>
+- <code>ux_roles_name</code> UNIQUE(name) - ensures each role name is unique.</p>
+<hr>
+<h3 id="12-user_roles">1.2 user_roles<a class="headerlink" href="#12-user_roles" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Auto-increment mapping ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT FK</td>
+<td>References <code>users.id</code> (user assigned the role)</td>
+</tr>
+<tr>
+<td>role_id</td>
+<td>INT FK</td>
+<td>References <code>roles.id</code> (assigned role)</td>
+</tr>
+<tr>
+<td>assigned_at</td>
+<td>TIMESTAMPTZ</td>
+<td>When the role was assigned</td>
+</tr>
+<tr>
+<td>revoked_at</td>
+<td>TIMESTAMPTZ</td>
+<td>When the role was revoked (optional)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong><br>
+- <code>ux_user_roles_user_role</code> UNIQUE(user_id, role_id, assigned_at) - prevent duplicate immediate assignments (optional depending on policy).<br>
+- <code>ix_user_roles_user</code> on <code>(user_id)</code> - fast lookup of a user’s roles.<br>
+- <code>ix_user_roles_role</code> on <code>(role_id)</code> - fast lookup of users by role.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>user_roles</code> is a bridge table enabling flexible role assignment (one user may hold multiple roles over time if desired). If your policy allows only one active role per user, make <code>user_roles</code> constrained accordingly (e.g., by checking active periods or adding a uniqueness constraint on user_id with <code>revoked_at IS NULL</code>).</p>
+</blockquote>
+<hr>
+<h3 id="13-users">1.3 users<a class="headerlink" href="#13-users" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Auto-increment user ID</td>
 </tr>
 <tr>
 <td>username</td>
 <td>VARCHAR</td>
-<td>Username for display</td>
+<td>Display username</td>
 </tr>
 <tr>
 <td>email</td>
-<td>VARCHAR UNIQUE</td>
+<td>VARCHAR</td>
 <td>User’s email address</td>
 </tr>
 <tr>
@@ -926,19 +1038,9 @@
 <td>Last name</td>
 </tr>
 <tr>
-<td>role</td>
-<td>VARCHAR</td>
-<td>Defines role: <code>admin</code>, <code>therapist</code>, or <code>patient</code></td>
-</tr>
-<tr>
-<td>is_active</td>
+<td>email_verified</td>
 <td>BOOLEAN</td>
-<td>Active account status</td>
-</tr>
-<tr>
-<td>is_staff</td>
-<td>BOOLEAN</td>
-<td>Admin/staff flag</td>
+<td>Whether email is verified</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -958,9 +1060,10 @@
 </tbody>
 </table>
 <p><strong>Indexes:</strong><br>
-- <code>ux_users_email_lower</code> on <code>lower(email)</code> → Fast login and uniqueness check  </p>
+- <code>ux_users_email_lower</code> on <code>lower(email)</code> - case-insensitive uniqueness lookup (enforce unique index in DB if desired).<br>
+- <code>ix_users_created_at</code> on <code>(created_at)</code> - for administrative queries sorted by signup date.</p>
 <hr>
-<h3 id="12-therapist_profiles">1.2 therapist_profiles<a class="headerlink" href="#12-therapist_profiles" title="Permanent link">¶</a></h3>
+<h3 id="14-therapist_profiles">1.4 therapist_profiles<a class="headerlink" href="#14-therapist_profiles" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -977,169 +1080,38 @@
 </tr>
 <tr>
 <td>user_id</td>
-<td>INT FK(users.id)</td>
-<td>Linked user</td>
+<td>INT FK</td>
+<td>Linked user account (<code>users.id</code>)</td>
 </tr>
 <tr>
 <td>specialization</td>
 <td>VARCHAR</td>
-<td>Area of expertise</td>
+<td>Therapist’s specialty</td>
 </tr>
 <tr>
 <td>experience_years</td>
-<td>INT</td>
+<td>SMALLINT</td>
 <td>Years of experience</td>
 </tr>
 <tr>
 <td>consultation_mode</td>
 <td>VARCHAR</td>
-<td>Online / In-person</td>
+<td><code>online</code>, <code>in-person</code>, or <code>both</code></td>
 </tr>
 <tr>
 <td>about</td>
 <td>TEXT</td>
-<td>Therapist bio</td>
+<td>Bio or description</td>
 </tr>
 <tr>
 <td>clinic_address</td>
 <td>TEXT</td>
-<td>Clinic or contact address</td>
+<td>Clinic location (if applicable)</td>
 </tr>
 <tr>
 <td>is_approved</td>
 <td>BOOLEAN</td>
-<td>Approved by admin</td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Profile creation time</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Last profile update</td>
-</tr>
-<tr>
-<td>deleted_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Soft delete timestamp</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Indexes:</strong><br>
-- <code>ux_therapist_user</code> UNIQUE(user_id) → One profile per therapist<br>
-- <code>ix_therapist_specialization_approved</code> on <code>(specialization, is_approved)</code> → Filter by specialization &amp; approval  </p>
-<hr>
-<h3 id="13-availability_slots">1.3 availability_slots<a class="headerlink" href="#13-availability_slots" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>SERIAL PK</td>
-<td>Slot ID</td>
-</tr>
-<tr>
-<td>therapist_id</td>
-<td>INT FK(therapist_profiles.id)</td>
-<td>Associated therapist</td>
-</tr>
-<tr>
-<td>day_of_week</td>
-<td>INT</td>
-<td>Day number (0–6)</td>
-</tr>
-<tr>
-<td>start_time</td>
-<td>TIME</td>
-<td>Start time</td>
-</tr>
-<tr>
-<td>end_time</td>
-<td>TIME</td>
-<td>End time</td>
-</tr>
-<tr>
-<td>status</td>
-<td>VARCHAR</td>
-<td><code>available</code> or <code>booked</code></td>
-</tr>
-<tr>
-<td>created_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Creation timestamp</td>
-</tr>
-<tr>
-<td>updated_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Last update timestamp</td>
-</tr>
-<tr>
-<td>deleted_at</td>
-<td>TIMESTAMPTZ</td>
-<td>Soft delete timestamp</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Indexes:</strong><br>
-- <code>ix_slots_therapist_day_available</code> on <code>(therapist_id, day_of_week, start_time)</code> → Fast fetch of available slots  </p>
-<hr>
-<h3 id="14-appointments">1.4 appointments<a class="headerlink" href="#14-appointments" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>SERIAL PK</td>
-<td>Appointment ID</td>
-</tr>
-<tr>
-<td>therapist_id</td>
-<td>INT FK(therapist_profiles.id)</td>
-<td>Therapist handling session</td>
-</tr>
-<tr>
-<td>user_id</td>
-<td>INT FK(users.id)</td>
-<td>User (patient) booking</td>
-</tr>
-<tr>
-<td>slot_id</td>
-<td>INT FK(availability_slots.id)</td>
-<td>Linked slot</td>
-</tr>
-<tr>
-<td>appointment_date</td>
-<td>DATE</td>
-<td>Date of appointment</td>
-</tr>
-<tr>
-<td>time_slot</td>
-<td>TIME</td>
-<td>Time of appointment</td>
-</tr>
-<tr>
-<td>status</td>
-<td>VARCHAR</td>
-<td><code>pending</code>, <code>confirmed</code>, <code>cancelled</code>, <code>completed</code></td>
-</tr>
-<tr>
-<td>therapist_note</td>
-<td>TEXT</td>
-<td>Session notes</td>
+<td>Admin approval status</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1159,10 +1131,141 @@
 </tbody>
 </table>
 <p><strong>Indexes:</strong><br>
-- <code>ux_appt_therapist_date_time</code> UNIQUE(therapist_id, appointment_date, time_slot) → Prevents double booking<br>
-- <code>ix_appt_user_date</code> on <code>(user_id, appointment_date DESC)</code> → Lists recent appointments  </p>
+- <code>ux_therapist_user</code> UNIQUE(user_id) - one profile per user.<br>
+- <code>ix_therapist_specialization_approved</code> on <code>(specialization, is_approved)</code> - fast filtering for approved therapists.</p>
 <hr>
-<h3 id="15-mood_entries">1.5 mood_entries<a class="headerlink" href="#15-mood_entries" title="Permanent link">¶</a></h3>
+<h3 id="15-availability_slots">1.5 availability_slots<a class="headerlink" href="#15-availability_slots" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Slot ID</td>
+</tr>
+<tr>
+<td>therapist_id</td>
+<td>INT FK</td>
+<td>References <code>therapist_profiles.id</code></td>
+</tr>
+<tr>
+<td>day_of_week</td>
+<td>SMALLINT</td>
+<td>Day (0–6: Sun–Sat)</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>TIME</td>
+<td>Slot start time</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>TIME</td>
+<td>Slot end time</td>
+</tr>
+<tr>
+<td>status</td>
+<td>VARCHAR</td>
+<td><code>available</code> or <code>booked</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Updated timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong><br>
+- <code>ix_slots_therapist_day_time</code> on <code>(therapist_id, day_of_week, start_time)</code> - efficient retrieval of slots for a therapist/day.</p>
+<hr>
+<h3 id="16-appointments">1.6 appointments<a class="headerlink" href="#16-appointments" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Appointment ID</td>
+</tr>
+<tr>
+<td>therapist_id</td>
+<td>INT FK</td>
+<td>References <code>therapist_profiles.id</code></td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT FK</td>
+<td>References <code>users.id</code> (patient)</td>
+</tr>
+<tr>
+<td>slot_id</td>
+<td>INT FK</td>
+<td>References <code>availability_slots.id</code></td>
+</tr>
+<tr>
+<td>appointment_date</td>
+<td>DATE</td>
+<td>Appointment date</td>
+</tr>
+<tr>
+<td>time_slot</td>
+<td>TIME</td>
+<td>Time of session</td>
+</tr>
+<tr>
+<td>status</td>
+<td>VARCHAR</td>
+<td><code>pending</code>, <code>confirmed</code>, <code>cancelled</code>, <code>completed</code></td>
+</tr>
+<tr>
+<td>therapist_note</td>
+<td>TEXT</td>
+<td>Therapist notes (visible to patient after session)</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Updated timestamp</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Soft delete timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong><br>
+- <code>ux_appt_unique</code> UNIQUE(therapist_id, appointment_date, time_slot) - prevents double-booking of same therapist slot.<br>
+- <code>ix_appt_user_recent</code> on <code>(user_id, appointment_date DESC)</code> - fast retrieval of recent user appointments.</p>
+<hr>
+<h3 id="17-mood_entries">1.7 mood_entries<a class="headerlink" href="#17-mood_entries" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -1179,28 +1282,28 @@
 </tr>
 <tr>
 <td>user_id</td>
-<td>INT FK(users.id)</td>
-<td>Linked user</td>
+<td>BIGINT FK</td>
+<td>References <code>users.id</code></td>
 </tr>
 <tr>
 <td>mood_score</td>
-<td>INT</td>
-<td>Rating from 1–5</td>
+<td>SMALLINT</td>
+<td>Mood rating (1–5)</td>
 </tr>
 <tr>
 <td>note</td>
 <td>TEXT</td>
-<td>Optional mood note</td>
+<td>Optional note</td>
 </tr>
 <tr>
 <td>created_at</td>
 <td>DATE</td>
-<td>Entry creation date</td>
+<td>Date of entry (one per day)</td>
 </tr>
 <tr>
 <td>updated_at</td>
 <td>TIMESTAMPTZ</td>
-<td>Last modification</td>
+<td>Updated timestamp</td>
 </tr>
 <tr>
 <td>deleted_at</td>
@@ -1210,10 +1313,10 @@
 </tbody>
 </table>
 <p><strong>Indexes:</strong><br>
-- <code>ux_mood_user_date</code> UNIQUE(user_id, created_at) → One entry per user per day<br>
-- <code>ix_mood_user_date_desc</code> on <code>(user_id, created_at DESC)</code> → Fast recent mood history  </p>
+- <code>ux_mood_user_date</code> UNIQUE(user_id, created_at) - enforces one mood entry per user per day.<br>
+- <code>ix_mood_recent</code> on <code>(user_id, created_at DESC)</code> - quick retrieval of latest entries.</p>
 <hr>
-<h3 id="16-contents">1.6 contents<a class="headerlink" href="#16-contents" title="Permanent link">¶</a></h3>
+<h3 id="18-contents">1.8 contents<a class="headerlink" href="#18-contents" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -1231,22 +1334,27 @@
 <tr>
 <td>title</td>
 <td>VARCHAR</td>
-<td>Tip or content title</td>
+<td>Optional title</td>
 </tr>
 <tr>
 <td>description</td>
 <td>TEXT</td>
-<td>Content body</td>
+<td>Mindfulness tip or exercise</td>
 </tr>
 <tr>
 <td>category</td>
 <td>VARCHAR</td>
-<td>Content category (e.g., uplifting, calming)</td>
+<td>Optional category</td>
 </tr>
 <tr>
 <td>is_approved</td>
 <td>BOOLEAN</td>
-<td>Approved for recommendation</td>
+<td>Approval flag</td>
+</tr>
+<tr>
+<td>created_by</td>
+<td>INT FK</td>
+<td>References <code>users.id</code> (admin who created)</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1266,9 +1374,9 @@
 </tbody>
 </table>
 <p><strong>Indexes:</strong><br>
-- <code>ix_content_approved_category</code> on <code>(is_approved, category)</code> → Fetch approved content quickly  </p>
+- <code>ix_content_approved_category</code> on <code>(is_approved, category)</code> - fetch approved content quickly.</p>
 <hr>
-<h3 id="17-recommendation_rules">1.7 recommendation_rules<a class="headerlink" href="#17-recommendation_rules" title="Permanent link">¶</a></h3>
+<h3 id="19-recommendation_rules">1.9 recommendation_rules<a class="headerlink" href="#19-recommendation_rules" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -1286,22 +1394,22 @@
 <tr>
 <td>rule_name</td>
 <td>VARCHAR</td>
-<td>Rule name</td>
+<td>Human-friendly rule name</td>
 </tr>
 <tr>
 <td>condition_expr</td>
 <td>TEXT</td>
-<td>Logic condition expression</td>
+<td>Condition expression (e.g., <code>avg_mood &lt; 3</code>)</td>
 </tr>
 <tr>
 <td>category_to_show</td>
 <td>VARCHAR</td>
-<td>Recommended category</td>
+<td>Category of content to show</td>
 </tr>
 <tr>
 <td>is_active</td>
 <td>BOOLEAN</td>
-<td>Active/inactive status</td>
+<td>Active flag</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -1321,12 +1429,63 @@
 </tbody>
 </table>
 <p><strong>Indexes:</strong><br>
-- <code>ix_recommendation_rules_active</code> on <code>(is_active)</code> → Fetch only active rules  </p>
+- <code>ix_rules_active</code> on <code>(is_active)</code> - quick filtering of active rules.</p>
+<hr>
+<h3 id="110-password_reset_tokens">1.10 password_reset_tokens<a class="headerlink" href="#110-password_reset_tokens" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>SERIAL PK</td>
+<td>Token ID</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT FK</td>
+<td>References <code>users.id</code></td>
+</tr>
+<tr>
+<td>token</td>
+<td>VARCHAR</td>
+<td>Secure random token</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>VARCHAR</td>
+<td>Purpose (e.g., <code>password_reset</code>, <code>verify_email</code>)</td>
+</tr>
+<tr>
+<td>expires_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Expiration time</td>
+</tr>
+<tr>
+<td>used</td>
+<td>BOOLEAN</td>
+<td>Whether token was consumed</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMPTZ</td>
+<td>Created timestamp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong><br>
+- <code>ux_token_unique</code> UNIQUE(token) - ensures token uniqueness.<br>
+- <code>ix_token_user_expiry</code> on <code>(user_id, expires_at)</code> - find valid tokens quickly.</p>
 <hr>
 <h2 id="2-er-diagram">2. ER Diagram<a class="headerlink" href="#2-er-diagram" title="Permanent link">¶</a></h2>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/images/database-schema.png" data-desc-position="bottom"><img alt="Database Schema" src="../../assets/images/database-schema.png"></a></p>
 <hr>
-<h2 id="3-relationship-table">3. Relationship Table<a class="headerlink" href="#3-relationship-table" title="Permanent link">¶</a></h2>
+<h2 id="3-relationships">3. Relationships<a class="headerlink" href="#3-relationships" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
@@ -1338,55 +1497,76 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>roles</strong></td>
+<td><strong>user_roles</strong></td>
+<td>1 → N</td>
+<td>A role (admin/therapist/patient) can be assigned to many users (historical or concurrent assignments).</td>
+</tr>
+<tr>
+<td><strong>users</strong></td>
+<td><strong>user_roles</strong></td>
+<td>1 → N</td>
+<td>A user can have multiple role assignment records (current or historical).</td>
+</tr>
+<tr>
 <td><strong>users</strong></td>
 <td><strong>therapist_profiles</strong></td>
 <td>1 → 0..1</td>
-<td>A user may have one therapist profile</td>
+<td>A user may have one therapist profile (or none).</td>
 </tr>
 <tr>
 <td><strong>therapist_profiles</strong></td>
 <td><strong>availability_slots</strong></td>
 <td>1 → N</td>
-<td>Therapist publishes many slots</td>
+<td>A therapist publishes many availability slots.</td>
 </tr>
 <tr>
 <td><strong>therapist_profiles</strong></td>
 <td><strong>appointments</strong></td>
 <td>1 → N</td>
-<td>Therapist handles many appointments</td>
+<td>A therapist handles many appointments.</td>
 </tr>
 <tr>
 <td><strong>users</strong></td>
 <td><strong>appointments</strong></td>
 <td>1 → N</td>
-<td>A user books multiple appointments</td>
+<td>A user (patient) can book many appointments.</td>
 </tr>
 <tr>
 <td><strong>availability_slots</strong></td>
 <td><strong>appointments</strong></td>
 <td>1 → N</td>
-<td>Slot can link to multiple appointments</td>
+<td>A slot can be linked to multiple appointment records (depending on policy) — usually one active booking per slot is enforced by business rule.</td>
 </tr>
 <tr>
 <td><strong>users</strong></td>
 <td><strong>mood_entries</strong></td>
 <td>1 → N</td>
-<td>User logs multiple moods</td>
+<td>Users log multiple mood entries over time.</td>
 </tr>
 <tr>
 <td><strong>users</strong></td>
 <td><strong>contents</strong></td>
 <td>1 → N</td>
-<td>Admin creates multiple contents</td>
+<td>Admin users create content pieces.</td>
 </tr>
 <tr>
 <td><strong>recommendation_rules</strong></td>
 <td><strong>contents</strong></td>
 <td>Logical</td>
-<td>Rules filter or suggest contents</td>
+<td>Rules drive which content is recommended.</td>
+</tr>
+<tr>
+<td><strong>users</strong></td>
+<td><strong>password_reset_tokens</strong></td>
+<td>1 → N</td>
+<td>Users can have multiple password/reset tokens (tracked over time).</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Clarification:</strong> <code>user_roles</code> is the mapping table between <code>users</code> and <code>roles</code>. Use constraints (unique partial indexes or <code>revoked_at IS NULL</code>) to enforce single active role per user if that is a business requirement.</p>
+</blockquote>
 <hr>
 <h2 id="4-index-summary">4. Index Summary<a class="headerlink" href="#4-index-summary" title="Permanent link">¶</a></h2>
 <table>
@@ -1400,65 +1580,101 @@
 </thead>
 <tbody>
 <tr>
+<td><code>ux_roles_name</code></td>
+<td>roles</td>
+<td>name</td>
+<td>Unique role names</td>
+</tr>
+<tr>
+<td><code>ux_user_roles_user_role</code></td>
+<td>user_roles</td>
+<td>(user_id, role_id, assigned_at)</td>
+<td>Prevent duplicate immediate assignments</td>
+</tr>
+<tr>
+<td><code>ix_user_roles_user</code></td>
+<td>user_roles</td>
+<td>user_id</td>
+<td>Lookup roles by user</td>
+</tr>
+<tr>
+<td><code>ix_user_roles_role</code></td>
+<td>user_roles</td>
+<td>role_id</td>
+<td>Lookup users by role</td>
+</tr>
+<tr>
 <td><code>ux_users_email_lower</code></td>
 <td>users</td>
 <td>lower(email)</td>
-<td>Fast login lookup</td>
+<td>Case-insensitive email uniqueness / fast login lookup</td>
+</tr>
+<tr>
+<td><code>ix_users_created_at</code></td>
+<td>users</td>
+<td>created_at</td>
+<td>Admin queries by signup time</td>
 </tr>
 <tr>
 <td><code>ux_therapist_user</code></td>
 <td>therapist_profiles</td>
 <td>user_id</td>
-<td>One profile per therapist</td>
+<td>Ensure one profile per user</td>
 </tr>
 <tr>
 <td><code>ix_therapist_specialization_approved</code></td>
 <td>therapist_profiles</td>
-<td>specialization, is_approved</td>
-<td>Filter therapists</td>
+<td>(specialization, is_approved)</td>
+<td>Filter approved therapists quickly</td>
 </tr>
 <tr>
-<td><code>ix_slots_therapist_day_available</code></td>
+<td><code>ix_slots_therapist_day_time</code></td>
 <td>availability_slots</td>
-<td>therapist_id, day_of_week, start_time</td>
-<td>Fetch available slots</td>
+<td>(therapist_id, day_of_week, start_time)</td>
+<td>Fast slot retrieval</td>
 </tr>
 <tr>
-<td><code>ux_appt_therapist_date_time</code></td>
+<td><code>ux_appt_unique</code></td>
 <td>appointments</td>
-<td>therapist_id, appointment_date, time_slot</td>
+<td>(therapist_id, appointment_date, time_slot)</td>
 <td>Prevent double booking</td>
 </tr>
 <tr>
-<td><code>ix_appt_user_date</code></td>
+<td><code>ix_appt_user_recent</code></td>
 <td>appointments</td>
-<td>user_id, appointment_date</td>
-<td>Retrieve recent appointments</td>
+<td>(user_id, appointment_date)</td>
+<td>Fetch recent user appointments</td>
 </tr>
 <tr>
 <td><code>ux_mood_user_date</code></td>
 <td>mood_entries</td>
-<td>user_id, created_at</td>
-<td>One entry per day</td>
+<td>(user_id, created_at)</td>
+<td>One mood entry per day</td>
+</tr>
+<tr>
+<td><code>ix_mood_recent</code></td>
+<td>mood_entries</td>
+<td>(user_id, created_at DESC)</td>
+<td>Fast recent mood retrieval</td>
 </tr>
 <tr>
 <td><code>ix_content_approved_category</code></td>
 <td>contents</td>
-<td>is_approved, category</td>
-<td>Fast content fetch</td>
+<td>(is_approved, category)</td>
+<td>Fetch approved content quickly</td>
 </tr>
 <tr>
-<td><code>ux_email_token</code></td>
-<td>email_tokens</td>
+<td><code>ux_token_unique</code></td>
+<td>password_reset_tokens</td>
 <td>token</td>
-<td>Token validation</td>
+<td>Unique tokens</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2 id="5-triggers">5. Triggers<a class="headerlink" href="#5-triggers" title="Permanent link">¶</a></h2>
 <p><strong>set_updated_at()</strong><br>
-Automatically updates the <code>updated_at</code> field on every row modification.  </p>
+Functionality: automatically sets <code>updated_at = now()</code> on row updates.</p>
 <p><strong>Applied On:</strong><br>
 - <code>users</code><br>
 - <code>therapist_profiles</code><br>
@@ -1466,7 +1682,7 @@ Automatically updates the <code>updated_at</code> field on every row modificatio
 - <code>appointments</code><br>
 - <code>contents</code><br>
 - <code>mood_entries</code></p>
-<p><strong>Why:</strong> Ensures consistent timestamps without backend logic repetition.</p>
+<p><strong>Purpose:</strong> Ensures consistent <code>updated_at</code> timestamps without requiring explicit updates in application code.</p>
 <hr>
 <h2 id="6-views-future-enhancements">6. Views (Future Enhancements)<a class="headerlink" href="#6-views-future-enhancements" title="Permanent link">¶</a></h2>
 <table>
@@ -1479,19 +1695,27 @@ Automatically updates the <code>updated_at</code> field on every row modificatio
 <tbody>
 <tr>
 <td><code>active_therapists_view</code></td>
-<td>Lists all approved therapists with available slots.</td>
+<td>Lists approved therapists with available slots</td>
 </tr>
 <tr>
 <td><code>mood_trend_view</code></td>
-<td>Aggregates last 7-day average moods per user.</td>
+<td>7-day average mood per user (for analytics)</td>
 </tr>
 <tr>
 <td><code>upcoming_appointments_view</code></td>
-<td>Displays all confirmed appointments for current week.</td>
+<td>Confirmed appointments for the next 7 days</td>
+</tr>
+<tr>
+<td><code>user_activity_view</code></td>
+<td>Combined recent activity for dashboards (mood, appointments, content interactions)</td>
 </tr>
 </tbody>
 </table>
 <hr>
+<blockquote>
+<p><strong>Note:</strong><br>
+The MindEase schema follows normalization best practices (3NF) and separates static role definitions (<code>roles</code>) from assignment records (<code>user_roles</code>) so you can track role history or support multi-role users in the future. Use partial unique indexes or constraints to enforce business rules (for example: a single active role per user).</p>
+</blockquote>
 
 
 
