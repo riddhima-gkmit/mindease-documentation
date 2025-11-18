@@ -245,7 +245,7 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 ---
 
-## 5. Triggers
+## 5. Triggers (Future Enhancements)
 
 **set_updated_at()**  
 Functionality: automatically sets `updated_at = now()` on row updates.

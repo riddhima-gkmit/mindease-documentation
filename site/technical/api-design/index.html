@@ -811,6 +811,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <table>
 <thead>
 <tr>
+<th>Role</th>
 <th>Method</th>
 <th>Endpoint</th>
 <th>Description</th>
@@ -818,41 +819,49 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/register/</code></td>
 <td>Register a new user (Admin, Therapist, or User).</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/auth/verify-email/&lt;uid&gt;/&lt;token&gt;/</code></td>
 <td>Verify user email after registration.</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/login/</code></td>
 <td>Log in and receive JWT access and refresh tokens.</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/token/refresh/</code></td>
 <td>Refresh JWT access token using a refresh token.</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/password-reset/</code></td>
 <td>Send password reset email to the user.</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/password-reset-confirm/&lt;uid&gt;/&lt;token&gt;/</code></td>
 <td>Confirm and set new password.</td>
 </tr>
 <tr>
+<td>Authenticated Users</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/auth/profile/</code></td>
-<td>Retrieve user profile information.</td>
+<td>Retrieve current user's profile information.</td>
 </tr>
 <tr>
+<td>Authenticated Users</td>
 <td><strong>PUT</strong></td>
 <td><code>/api/v1/auth/profile/</code></td>
 <td>Update profile details (username, email, role).</td>
@@ -864,6 +873,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <table>
 <thead>
 <tr>
+<th>Role</th>
 <th>Method</th>
 <th>Endpoint</th>
 <th>Description</th>
@@ -871,21 +881,25 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>Patient</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/mood/</code></td>
 <td>Add a new mood entry (mood score and note).</td>
 </tr>
 <tr>
+<td>Patient</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/mood/</code></td>
 <td>Retrieve all mood entries of the logged-in user.</td>
 </tr>
 <tr>
+<td>Patient</td>
 <td><strong>PUT</strong></td>
 <td><code>/api/v1/mood/{id}/</code></td>
 <td>Edit a specific mood entry.</td>
 </tr>
 <tr>
+<td>Patient, Admin</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/mood/analytics/</code></td>
 <td>View mood analytics (weekly or monthly trends).</td>
@@ -897,6 +911,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <table>
 <thead>
 <tr>
+<th>Role</th>
 <th>Method</th>
 <th>Endpoint</th>
 <th>Description</th>
@@ -904,31 +919,37 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>Therapist</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
 <td>Create a therapist profile (specialization, mode, experience).</td>
 </tr>
 <tr>
+<td>Therapist</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
 <td>Retrieve therapist profile details.</td>
 </tr>
 <tr>
+<td>Therapist</td>
 <td><strong>PUT</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
 <td>Update therapist profile information.</td>
 </tr>
 <tr>
+<td>All Users</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/therapists/</code></td>
 <td>List all approved therapists (optional filters by specialization).</td>
 </tr>
 <tr>
+<td>Therapist</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/therapists/availability/</code></td>
 <td>Add therapist availability slots.</td>
 </tr>
 <tr>
+<td>Therapist, Admin</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/therapists/availability/</code></td>
 <td>View therapist’s availability slots.</td>
@@ -940,6 +961,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <table>
 <thead>
 <tr>
+<th>Role</th>
 <th>Method</th>
 <th>Endpoint</th>
 <th>Description</th>
@@ -947,21 +969,25 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>Patient</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/appointments/</code></td>
 <td>Book a new appointment with a therapist.</td>
 </tr>
 <tr>
+<td>Patient, Therapist, Admin</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/appointments/</code></td>
 <td>View all appointments for the logged-in user.</td>
 </tr>
 <tr>
+<td>Patient</td>
 <td><strong>PATCH</strong></td>
 <td><code>/api/v1/appointments/{id}/cancel/</code></td>
 <td>Cancel a specific appointment.</td>
 </tr>
 <tr>
+<td>Therapist</td>
 <td><strong>PATCH</strong></td>
 <td><code>/api/v1/appointments/{id}/notes/</code></td>
 <td>Add or update therapist session notes.</td>
@@ -973,6 +999,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <table>
 <thead>
 <tr>
+<th>Role</th>
 <th>Method</th>
 <th>Endpoint</th>
 <th>Description</th>
@@ -980,6 +1007,7 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>Patient</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/recommendations/</code></td>
 <td>Fetch recommended mindfulness content based on mood trends.</td>
