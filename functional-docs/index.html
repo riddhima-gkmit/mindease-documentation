@@ -631,9 +631,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-analytics-summary" class="md-nav__link">
+  <a href="#24-analytics-trends" class="md-nav__link">
     <span class="md-ellipsis">
-      2.4 Analytics Summary
+      2.4 Analytics &amp; Trends
     </span>
   </a>
   
@@ -873,15 +873,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#54-admin-approval-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.4 Admin Approval Workflow
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -893,13 +884,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#module-6-admin-dashboard-reports" class="md-nav__link">
+  <a href="#module-6-admin-dashboard" class="md-nav__link">
     <span class="md-ellipsis">
-      Module 6: Admin Dashboard &amp; Reports
+      Module 6: Admin Dashboard
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Module 6: Admin Dashboard &amp; Reports">
+    <nav class="md-nav" aria-label="Module 6: Admin Dashboard">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -931,36 +922,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-appointment-insights" class="md-nav__link">
+  <a href="#62-therapist-profile-management" class="md-nav__link">
     <span class="md-ellipsis">
-      6.2 Appointment Insights
+      6.2 Therapist Profile Management
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#63-mood-trends-overview" class="md-nav__link">
+  <a href="#63-content-management" class="md-nav__link">
     <span class="md-ellipsis">
-      6.3 Mood Trends Overview
+      6.3 Content Management
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#64-recommendation-analytics" class="md-nav__link">
+  <a href="#64-visible-admin-models" class="md-nav__link">
     <span class="md-ellipsis">
-      6.4 Recommendation Analytics
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#65-system-reports" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.5 System Reports
+      6.4 Visible Admin Models
     </span>
   </a>
   
@@ -1262,6 +1244,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical/CI-CD-pipeline-and-deployment-flow.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD Pipeline and Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1399,33 +1404,39 @@
 <hr>
 <h2 id="module-2-mood-tracking-analytics">Module 2: Mood Tracking &amp; Analytics<a class="headerlink" href="#module-2-mood-tracking-analytics" title="Permanent link">¶</a></h2>
 <h3 id="purpose_1">Purpose<a class="headerlink" href="#purpose_1" title="Permanent link">¶</a></h3>
-<p>To help patients easily record their mood and view mental health trends over time.</p>
+<p>To help patients easily record their mood and view mental health trends over time with flexible, multi-entry logging.</p>
 <h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">¶</a></h3>
 <h4 id="21-add-mood-entry">2.1 Add Mood Entry<a class="headerlink" href="#21-add-mood-entry" title="Permanent link">¶</a></h4>
 <ul>
-<li>Daily input using 5-point emoji scale (😢 → 😄).  </li>
-<li>Optional text notes for journaling.  </li>
-<li>Restriction: one entry per day per user.</li>
+<li>Input using 5-point emoji scale (😢 → 😄) representing mood levels.  </li>
+<li>Optional text notes for journaling and context.  </li>
+<li><strong>Multiple entries per day allowed</strong> - users can log mood changes throughout the day.</li>
+<li>Each entry is timestamped with date and time for accurate tracking.</li>
 </ul>
 <h4 id="22-edit-mood-entry">2.2 Edit Mood Entry<a class="headerlink" href="#22-edit-mood-entry" title="Permanent link">¶</a></h4>
 <ul>
-<li>Users can edit their past mood notes or score (but not delete).  </li>
+<li>Users can edit their past mood notes or scores.  </li>
+<li>Each entry maintains its original timestamp.</li>
 </ul>
 <h4 id="23-view-mood-history">2.3 View Mood History<a class="headerlink" href="#23-view-mood-history" title="Permanent link">¶</a></h4>
 <ul>
-<li>Displays previous moods in timeline or chart view.  </li>
-<li>Filters: weekly, monthly, or custom date range.  </li>
+<li>Displays all mood entries with timestamps in a timeline view.  </li>
+<li>Shows multiple entries per day with their individual timestamps.</li>
+<li>Sorted by most recent first for easy access.</li>
 </ul>
-<h4 id="24-analytics-summary">2.4 Analytics Summary<a class="headerlink" href="#24-analytics-summary" title="Permanent link">¶</a></h4>
+<h4 id="24-analytics-trends">2.4 Analytics &amp; Trends<a class="headerlink" href="#24-analytics-trends" title="Permanent link">¶</a></h4>
 <ul>
-<li>Computes average mood for last 7 days.  </li>
-<li>Shows trend line (improving, declining, neutral).  </li>
-<li>Quick visualization for therapists and admins.</li>
+<li><strong>Daily Averages</strong>: When multiple entries exist for a day, the system calculates the daily average.</li>
+<li><strong>7-Day &amp; 30-Day Trends</strong>: Chart visualization with configurable date ranges.</li>
+<li><strong>Average Mood Calculation</strong>: Calculated as the average of daily averages (not simple average of all entries).</li>
+<li><strong>Trend Analysis</strong>: Shows if mood is improving, declining, or stable over time.</li>
+<li><strong>Y-Axis Label</strong>: Chart clearly shows "Mood Score" on the y-axis for better understanding.</li>
 </ul>
 <h4 id="25-data-integrity">2.5 Data Integrity<a class="headerlink" href="#25-data-integrity" title="Permanent link">¶</a></h4>
 <ul>
-<li>Duplicate date entries are blocked.  </li>
-<li>Updates preserve data consistency.</li>
+<li>All entries are timestamped and preserved.  </li>
+<li>Updates maintain data consistency.</li>
+<li>Soft delete implementation - entries are never permanently deleted.</li>
 </ul>
 <hr>
 <h2 id="module-3-therapist-management">Module 3: Therapist Management<a class="headerlink" href="#module-3-therapist-management" title="Permanent link">¶</a></h2>
@@ -1434,112 +1445,124 @@
 <h3 id="features_2">Features<a class="headerlink" href="#features_2" title="Permanent link">¶</a></h3>
 <h4 id="31-therapist-profile-setup">3.1 Therapist Profile Setup<a class="headerlink" href="#31-therapist-profile-setup" title="Permanent link">¶</a></h4>
 <ul>
-<li>Fields: specialization, experience, consultation mode (online/offline), clinic address, about, availability slots.  </li>
-<li>Each profile is linked to a registered user account.  </li>
+<li>Fields: specialization, experience (0-55 years), consultation mode (online/offline/both), clinic address, about section.  </li>
+<li>Each profile is linked to a registered user account (OneToOne relationship).  </li>
+<li>Experience years validated on both frontend and backend (max 55 years).</li>
 </ul>
 <h4 id="32-profile-approval">3.2 Profile Approval<a class="headerlink" href="#32-profile-approval" title="Permanent link">¶</a></h4>
 <ul>
-<li>Admin verifies therapist identity before publishing.  </li>
-<li>Unapproved therapists are invisible to patients.  </li>
+<li>Admin verifies and approves therapist profiles before publishing.  </li>
+<li>Unapproved therapists are invisible to patients in the directory.  </li>
+<li>Only admins can change approval status.</li>
 </ul>
 <h4 id="33-availability-slots">3.3 Availability Slots<a class="headerlink" href="#33-availability-slots" title="Permanent link">¶</a></h4>
 <ul>
-<li>Therapists define available days and time slots.  </li>
-<li>Slots auto-marked unavailable when booked.  </li>
+<li>Therapists define recurring weekly availability (day of week + time ranges).  </li>
+<li>System checks slot availability in real-time during booking.</li>
+<li>Booked slots API endpoint prevents double-booking on the frontend.</li>
 </ul>
 <h4 id="34-profile-updates">3.4 Profile Updates<a class="headerlink" href="#34-profile-updates" title="Permanent link">¶</a></h4>
 <ul>
 <li>Therapists can update their details anytime.  </li>
-<li>Changes are subject to admin reapproval (optional).  </li>
+<li>Profile remains visible to patients during updates.  </li>
 </ul>
 <hr>
 <h2 id="module-4-appointment-booking">Module 4: Appointment Booking<a class="headerlink" href="#module-4-appointment-booking" title="Permanent link">¶</a></h2>
 <h3 id="purpose_3">Purpose<a class="headerlink" href="#purpose_3" title="Permanent link">¶</a></h3>
-<p>To simplify therapist-patient scheduling and maintain accurate records of consultations.</p>
+<p>To simplify therapist-patient scheduling and maintain accurate records of consultations with robust validation.</p>
 <h3 id="features_3">Features<a class="headerlink" href="#features_3" title="Permanent link">¶</a></h3>
 <h4 id="41-browse-therapist-directory">4.1 Browse Therapist Directory<a class="headerlink" href="#41-browse-therapist-directory" title="Permanent link">¶</a></h4>
 <ul>
-<li>Patients can view all approved therapists.  </li>
-<li>Filters by specialization, experience, or mode (online/offline).  </li>
+<li>Patients can view all approved therapists in a paginated list.  </li>
+<li>Filters by specialization and consultation mode (online/offline/both).</li>
+<li>View detailed therapist profiles including experience, about section, and availability.</li>
 </ul>
 <h4 id="42-book-appointment">4.2 Book Appointment<a class="headerlink" href="#42-book-appointment" title="Permanent link">¶</a></h4>
 <ul>
-<li>Patient selects therapist, date, and available time slot.  </li>
-<li>System checks for conflicts (no double bookings).  </li>
-<li>Sends confirmation email to both patient and therapist.  </li>
+<li><strong>Consultation Mode Selection</strong>: Choose between Video Call or In-Person (auto-advances to next step).</li>
+<li><strong>Date Selection</strong>: Calendar view with only future dates enabled.</li>
+<li><strong>Time Slot Selection</strong>: Shows only available slots based on therapist's weekly schedule.</li>
+<li><strong>Real-time Validation</strong>:</li>
+<li>Prevents booking appointments in the past (server-side validation).</li>
+<li>Disables already booked time slots (fetched via API).</li>
+<li>Filters out time slots that have passed for the current day.</li>
+<li><strong>Confirmation</strong>: Sends confirmation email to both patient and therapist with appointment details.</li>
+<li><strong>Success Popup</strong>: Persistent confirmation message with email notification info (manual close required).</li>
 </ul>
 <h4 id="43-appointment-status-tracking">4.3 Appointment Status Tracking<a class="headerlink" href="#43-appointment-status-tracking" title="Permanent link">¶</a></h4>
 <ul>
 <li>Status values: <code>pending</code>, <code>confirmed</code>, <code>cancelled</code>, <code>completed</code>.  </li>
-<li>Patients can cancel before session start.  </li>
-<li>Admin can manually override or reassign status if needed.</li>
+<li>Patients can cancel appointments before the session.</li>
+<li>Unique constraint on active appointments prevents therapist double-booking.</li>
 </ul>
 <h4 id="44-therapist-notes">4.4 Therapist Notes<a class="headerlink" href="#44-therapist-notes" title="Permanent link">¶</a></h4>
 <ul>
-<li>After each session, therapist adds private notes visible only to that patient.  </li>
-<li>Notes are editable until the appointment is marked <code>completed</code>.  </li>
+<li>After each session, therapist adds session notes visible to that patient.  </li>
+<li>Notes are editable and visible in appointment history.</li>
 </ul>
 <h4 id="45-appointment-history">4.5 Appointment History<a class="headerlink" href="#45-appointment-history" title="Permanent link">¶</a></h4>
 <ul>
 <li>Both therapist and patient can view past and upcoming appointments.  </li>
-<li>Sorted by date/time, filterable by status.  </li>
+<li>Paginated list sorted by date and time (most recent first).</li>
+<li>Filterable by status for easy management.  </li>
 </ul>
 <hr>
 <h2 id="module-5-recommendation-engine">Module 5: Recommendation Engine<a class="headerlink" href="#module-5-recommendation-engine" title="Permanent link">¶</a></h2>
 <h3 id="purpose_4">Purpose<a class="headerlink" href="#purpose_4" title="Permanent link">¶</a></h3>
-<p>To provide personalized wellness tips based on recent mood trends.</p>
+<p>To provide personalized wellness tips based on recent mood trends using intelligent averaging.</p>
 <h3 id="features_4">Features<a class="headerlink" href="#features_4" title="Permanent link">¶</a></h3>
 <h4 id="51-rule-based-recommendation">5.1 Rule-Based Recommendation<a class="headerlink" href="#51-rule-based-recommendation" title="Permanent link">¶</a></h4>
 <ul>
-<li>Uses last 7-day average mood score to pick category:  </li>
-<li>1-2: “Calming / Gratitude”  </li>
-<li>3: “Maintenance / Neutral”  </li>
-<li>4-5: “Uplifting / Motivational”  </li>
-<li>Pulls matching content from approved library.</li>
+<li>Analyzes last 7-day mood data with <strong>average of daily averages</strong> calculation.</li>
+<li>Categorizes recommendations based on mood score:  </li>
+<li>≤ 2: "Uplifting" content  </li>
+<li>= 3: "Maintenance" content  </li>
+<li>≥ 4: "Calming" or "Gratitude" content</li>
+<li>Returns 3 random content items from the matched category.</li>
+<li>Displays average mood score (rounded to 2 decimals) and recommended category.</li>
 </ul>
 <h4 id="52-content-management">5.2 Content Management<a class="headerlink" href="#52-content-management" title="Permanent link">¶</a></h4>
 <ul>
-<li>Admin adds, edits, or deletes mindfulness tips, exercises, or motivational posts.  </li>
-<li>Each piece of content is categorized and timestamped.  </li>
+<li>Admin creates, edits, or deletes mindfulness tips, exercises, and wellness content.  </li>
+<li>Categories: <code>uplifting</code>, <code>calming</code>, <code>maintenance</code>, <code>gratitude</code>.</li>
+<li>Direct publishing - no approval workflow needed.</li>
+<li>Content visible immediately after creation.</li>
 </ul>
 <h4 id="53-delivery">5.3 Delivery<a class="headerlink" href="#53-delivery" title="Permanent link">¶</a></h4>
 <ul>
-<li>Patients receive recommendations on dashboard and via email.  </li>
-<li>New suggestions appear daily or when mood trend shifts.  </li>
-</ul>
-<h4 id="54-admin-approval-workflow">5.4 Admin Approval Workflow<a class="headerlink" href="#54-admin-approval-workflow" title="Permanent link">¶</a></h4>
-<ul>
-<li>Only approved content is used by the recommender.  </li>
-<li>Admin reviews pending items before publishing.</li>
+<li>Patients view recommendations on their "Daily Tips" page.</li>
+<li>Displays personalized content based on recent 7-day mood trend.</li>
+<li>Shows average mood score with emoji indicator.</li>
 </ul>
 <hr>
-<h2 id="module-6-admin-dashboard-reports">Module 6: Admin Dashboard &amp; Reports<a class="headerlink" href="#module-6-admin-dashboard-reports" title="Permanent link">¶</a></h2>
+<h2 id="module-6-admin-dashboard">Module 6: Admin Dashboard<a class="headerlink" href="#module-6-admin-dashboard" title="Permanent link">¶</a></h2>
 <h3 id="purpose_5">Purpose<a class="headerlink" href="#purpose_5" title="Permanent link">¶</a></h3>
-<p>To give administrators full system oversight with real-time analytics.</p>
+<p>To give administrators system management capabilities for users, therapists, and content.</p>
 <h3 id="features_5">Features<a class="headerlink" href="#features_5" title="Permanent link">¶</a></h3>
 <h4 id="61-user-and-therapist-management">6.1 User and Therapist Management<a class="headerlink" href="#61-user-and-therapist-management" title="Permanent link">¶</a></h4>
 <ul>
-<li>List all users with filters by role and activity status.  </li>
-<li>CRUD operations: create, update, deactivate accounts.  </li>
+<li>Manage users with role assignment using Role model and UserRole junction table.</li>
+<li>View and edit user profiles, email verification status, and account status.</li>
+<li>Multiple roles per user supported through many-to-many relationship.</li>
+<li>List view shows: ID, username, email, roles, activity status, verification status, and timestamps.</li>
 </ul>
-<h4 id="62-appointment-insights">6.2 Appointment Insights<a class="headerlink" href="#62-appointment-insights" title="Permanent link">¶</a></h4>
+<h4 id="62-therapist-profile-management">6.2 Therapist Profile Management<a class="headerlink" href="#62-therapist-profile-management" title="Permanent link">¶</a></h4>
 <ul>
-<li>View total bookings, completed sessions, and cancellations.  </li>
-<li>Identify most active therapists and busiest days.  </li>
+<li>Approve or reject therapist profiles.</li>
+<li>View therapist details: specialization, experience, consultation mode, about, clinic address.</li>
+<li>Manage therapist visibility to patients.</li>
 </ul>
-<h4 id="63-mood-trends-overview">6.3 Mood Trends Overview<a class="headerlink" href="#63-mood-trends-overview" title="Permanent link">¶</a></h4>
+<h4 id="63-content-management">6.3 Content Management<a class="headerlink" href="#63-content-management" title="Permanent link">¶</a></h4>
 <ul>
-<li>Displays common moods, average mood score distribution.  </li>
-<li>Track engagement (how many users log moods daily).  </li>
+<li>Create, edit, and delete recommendation content.</li>
+<li>Categorize content: uplifting, calming, maintenance, gratitude.</li>
+<li>Direct publishing without approval workflow.</li>
 </ul>
-<h4 id="64-recommendation-analytics">6.4 Recommendation Analytics<a class="headerlink" href="#64-recommendation-analytics" title="Permanent link">¶</a></h4>
-<ul>
-<li>Shows content engagement and delivery count per category.  </li>
-</ul>
-<h4 id="65-system-reports">6.5 System Reports<a class="headerlink" href="#65-system-reports" title="Permanent link">¶</a></h4>
-<ul>
-<li>Export reports to CSV or PDF for presentation.  </li>
-</ul>
+<h4 id="64-visible-admin-models">6.4 Visible Admin Models<a class="headerlink" href="#64-visible-admin-models" title="Permanent link">¶</a></h4>
+<p>Django Admin interface shows only:
+- <strong>User</strong>: Complete user management with inline role assignment
+- <strong>Content</strong> (RecommendationContent): Wellness content management<br>
+- <strong>TherapistProfile</strong>: Therapist profile approval and management  </p>
 <hr>
 <h2 id="module-7-email-notification-system">Module 7: Email Notification System<a class="headerlink" href="#module-7-email-notification-system" title="Permanent link">¶</a></h2>
 <h3 id="purpose_6">Purpose<a class="headerlink" href="#purpose_6" title="Permanent link">¶</a></h3>

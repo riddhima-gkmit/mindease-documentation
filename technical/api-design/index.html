@@ -724,10 +724,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#response-status-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response Status Codes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CI-CD-pipeline-and-deployment-flow.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD Pipeline and Deployment
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -822,19 +854,25 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/register/</code></td>
-<td>Register a new user (Admin, Therapist, or User).</td>
+<td>Register a new user (Patient or Therapist). Admin role cannot be registered through API.</td>
 </tr>
 <tr>
 <td>All Users</td>
 <td><strong>GET</strong></td>
-<td><code>/api/v1/auth/verify-email/&lt;uid&gt;/&lt;token&gt;/</code></td>
-<td>Verify user email after registration.</td>
+<td><code>/api/v1/auth/verify-email/&lt;uidb64&gt;/&lt;token&gt;/</code></td>
+<td>Verify user email after registration. Token expires after configured timeout (default: 1 hour 40 minutes).</td>
 </tr>
 <tr>
 <td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/login/</code></td>
-<td>Log in and receive JWT access and refresh tokens.</td>
+<td>Log in and receive JWT access and refresh tokens. Requires email verification. Optional role selection for users with multiple roles.</td>
+</tr>
+<tr>
+<td>Authenticated Users</td>
+<td><strong>POST</strong></td>
+<td><code>/api/v1/auth/logout/</code></td>
+<td>Log out and blacklist refresh token.</td>
 </tr>
 <tr>
 <td>All Users</td>
@@ -846,13 +884,13 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <td>All Users</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/auth/password-reset/</code></td>
-<td>Send password reset email to the user.</td>
+<td>Send password reset email to the user. Requires email to be verified.</td>
 </tr>
 <tr>
 <td>All Users</td>
 <td><strong>POST</strong></td>
-<td><code>/api/v1/auth/password-reset-confirm/&lt;uid&gt;/&lt;token&gt;/</code></td>
-<td>Confirm and set new password.</td>
+<td><code>/api/v1/auth/password-reset-confirm/&lt;uidb64&gt;/&lt;token&gt;/</code></td>
+<td>Confirm and set new password. Token expires after configured timeout (default: 1 hour 40 minutes).</td>
 </tr>
 <tr>
 <td>Authenticated Users</td>
@@ -864,7 +902,13 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <td>Authenticated Users</td>
 <td><strong>PUT</strong></td>
 <td><code>/api/v1/auth/profile/</code></td>
-<td>Update profile details (username, email, role).</td>
+<td>Update profile details (first_name, last_name, username). Email cannot be updated.</td>
+</tr>
+<tr>
+<td>Authenticated Users</td>
+<td><strong>POST</strong></td>
+<td><code>/api/v1/auth/add-role/</code></td>
+<td>Add additional role to user (patient can add therapist role, therapist can add patient role). Admin role cannot be added through API.</td>
 </tr>
 </tbody>
 </table>
@@ -882,27 +926,27 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <tbody>
 <tr>
 <td>Patient</td>
-<td><strong>POST</strong></td>
+<td><strong>GET</strong></td>
 <td><code>/api/v1/mood/</code></td>
-<td>Add a new mood entry (mood score and note).</td>
+<td>Retrieve all mood entries of the logged-in user (paginated).</td>
 </tr>
 <tr>
 <td>Patient</td>
-<td><strong>GET</strong></td>
+<td><strong>POST</strong></td>
 <td><code>/api/v1/mood/</code></td>
-<td>Retrieve all mood entries of the logged-in user.</td>
+<td>Add a new mood entry (mood score and note). Multiple entries per day allowed.</td>
 </tr>
 <tr>
 <td>Patient</td>
 <td><strong>PUT</strong></td>
-<td><code>/api/v1/mood/{id}/</code></td>
+<td><code>/api/v1/mood/&lt;uuid:id&gt;/</code></td>
 <td>Edit a specific mood entry.</td>
 </tr>
 <tr>
-<td>Patient, Admin</td>
+<td>Patient</td>
 <td><strong>GET</strong></td>
-<td><code>/api/v1/mood/analytics/</code></td>
-<td>View mood analytics (weekly or monthly trends).</td>
+<td><code>/api/v1/mood/chart-data/</code></td>
+<td>Get mood chart data with daily averages, trend analysis, and analytics for configurable date ranges (7 or 30 days). Query parameter: <code>days</code> (default: 7).</td>
 </tr>
 </tbody>
 </table>
@@ -920,39 +964,45 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <tbody>
 <tr>
 <td>Therapist</td>
-<td><strong>POST</strong></td>
+<td><strong>GET</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
-<td>Create a therapist profile (specialization, mode, experience).</td>
+<td>Retrieve therapist profile details for the authenticated therapist.</td>
 </tr>
 <tr>
 <td>Therapist</td>
-<td><strong>GET</strong></td>
+<td><strong>POST</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
-<td>Retrieve therapist profile details.</td>
+<td>Create a therapist profile (specialization, experience_years, consultation_mode, about, clinic_address).</td>
 </tr>
 <tr>
 <td>Therapist</td>
 <td><strong>PUT</strong></td>
 <td><code>/api/v1/therapists/profile/</code></td>
-<td>Update therapist profile information.</td>
+<td>Update therapist profile information. Partial updates allowed.</td>
 </tr>
 <tr>
 <td>All Users</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/therapists/</code></td>
-<td>List all approved therapists (optional filters by specialization).</td>
+<td>List all approved therapists (paginated). Query parameter: <code>specialization</code> (optional filter).</td>
+</tr>
+<tr>
+<td>All Users</td>
+<td><strong>GET</strong></td>
+<td><code>/api/v1/therapists/availability/&lt;uuid:therapist_id&gt;/</code></td>
+<td>View a specific therapist's availability slots by day of week and time range.</td>
 </tr>
 <tr>
 <td>Therapist</td>
 <td><strong>POST</strong></td>
-<td><code>/api/v1/therapists/availability/</code></td>
-<td>Add therapist availability slots.</td>
+<td><code>/api/v1/therapists/availability/create/</code></td>
+<td>Add therapist availability slot (day_of_week, start_time, end_time).</td>
 </tr>
 <tr>
-<td>Therapist, Admin</td>
-<td><strong>GET</strong></td>
-<td><code>/api/v1/therapists/availability/</code></td>
-<td>View therapist’s availability slots.</td>
+<td>Therapist</td>
+<td><strong>DELETE</strong></td>
+<td><code>/api/v1/therapists/availability/delete/&lt;int:id&gt;/</code></td>
+<td>Delete a therapist availability slot (soft delete).</td>
 </tr>
 </tbody>
 </table>
@@ -969,28 +1019,40 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 </thead>
 <tbody>
 <tr>
+<td>Patient, Therapist</td>
+<td><strong>GET</strong></td>
+<td><code>/api/v1/appointments/</code></td>
+<td>View all appointments for the logged-in user (paginated, filtered by role). Query parameters: <code>page</code>, <code>page_size</code>, <code>status</code> (optional).</td>
+</tr>
+<tr>
 <td>Patient</td>
 <td><strong>POST</strong></td>
 <td><code>/api/v1/appointments/</code></td>
-<td>Book a new appointment with a therapist.</td>
-</tr>
-<tr>
-<td>Patient, Therapist, Admin</td>
-<td><strong>GET</strong></td>
-<td><code>/api/v1/appointments/</code></td>
-<td>View all appointments for the logged-in user.</td>
+<td>Book a new appointment with a therapist. Requires: <code>therapist_id</code>, <code>date</code>, <code>time_slot</code>. Validates against past dates/times and double-booking.</td>
 </tr>
 <tr>
 <td>Patient</td>
 <td><strong>PATCH</strong></td>
-<td><code>/api/v1/appointments/{id}/cancel/</code></td>
-<td>Cancel a specific appointment.</td>
+<td><code>/api/v1/appointments/&lt;uuid:id&gt;/cancel/</code></td>
+<td>Cancel a specific appointment (status updated to 'cancelled'). Only pending or confirmed appointments can be cancelled.</td>
 </tr>
 <tr>
 <td>Therapist</td>
 <td><strong>PATCH</strong></td>
-<td><code>/api/v1/appointments/{id}/notes/</code></td>
-<td>Add or update therapist session notes.</td>
+<td><code>/api/v1/appointments/&lt;uuid:id&gt;/notes/</code></td>
+<td>Add or update therapist session notes. Only therapists can add notes to their appointments.</td>
+</tr>
+<tr>
+<td>Therapist</td>
+<td><strong>PATCH</strong></td>
+<td><code>/api/v1/appointments/&lt;uuid:id&gt;/approve-reject/</code></td>
+<td>Approve or reject a pending appointment. Requires: <code>action</code> ('approve' or 'reject'). Only pending appointments can be approved/rejected.</td>
+</tr>
+<tr>
+<td>All Users</td>
+<td><strong>GET</strong></td>
+<td><code>/api/v1/appointments/therapist/&lt;uuid:therapist_id&gt;/booked-slots/</code></td>
+<td>Get all booked time slots for a specific therapist on a given date. Query parameter: <code>date</code> (YYYY-MM-DD format). Prevents double booking on frontend.</td>
 </tr>
 </tbody>
 </table>
@@ -1010,10 +1072,24 @@ All responses are in <strong>JSON</strong>, and endpoints use <strong>JWT authen
 <td>Patient</td>
 <td><strong>GET</strong></td>
 <td><code>/api/v1/recommendations/</code></td>
-<td>Fetch recommended mindfulness content based on mood trends.</td>
+<td>Fetch recommended mindfulness content based on 7-day average mood trends (average of daily averages). Returns category, average mood score, and 3 random content items.</td>
 </tr>
 </tbody>
 </table>
+<hr>
+<h2 id="response-status-codes">Response Status Codes<a class="headerlink" href="#response-status-codes" title="Permanent link">¶</a></h2>
+<p>All API endpoints follow REST best practices for HTTP status codes:</p>
+<ul>
+<li><strong>200 OK</strong>: Successful GET, PUT, or PATCH request</li>
+<li><strong>201 Created</strong>: Successful POST request creating a new resource</li>
+<li><strong>204 No Content</strong>: Successful DELETE or update with no response body</li>
+<li><strong>400 Bad Request</strong>: Validation error or malformed request</li>
+<li><strong>401 Unauthorized</strong>: Authentication required or token invalid/expired</li>
+<li><strong>403 Forbidden</strong>: Authenticated but insufficient permissions</li>
+<li><strong>404 Not Found</strong>: Resource does not exist</li>
+<li><strong>409 Conflict</strong>: Duplicate entry or constraint violation</li>
+<li><strong>500 Internal Server Error</strong>: Unexpected server error</li>
+</ul>
 <hr>
 
 

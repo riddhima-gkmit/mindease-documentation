@@ -609,6 +609,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#data-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Models
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -733,6 +742,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CI-CD-pipeline-and-deployment-flow.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD Pipeline and Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -814,32 +846,40 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>React.js</strong></td>
-<td>Build interactive and responsive UI.</td>
+<td><strong>React.js (18+)</strong></td>
+<td>Build interactive and responsive UI with TypeScript.</td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong></td>
+<td>Type-safe development with strict type checking.</td>
 </tr>
 <tr>
 <td><strong>PWA (Progressive Web App)</strong></td>
-<td>Enable mobile-like experience and offline use.</td>
+<td>Enable mobile-like experience with offline support and installability.</td>
 </tr>
 <tr>
 <td><strong>Vite</strong></td>
-<td>Fast React build and dev environment.</td>
+<td>Fast React build tool and dev environment with HMR.</td>
 </tr>
 <tr>
 <td><strong>React Router</strong></td>
-<td>Handle page navigation.</td>
+<td>Handle client-side page navigation.</td>
 </tr>
 <tr>
-<td><strong>Material UI</strong></td>
-<td>Ready-made responsive UI components.</td>
+<td><strong>Tailwind CSS</strong></td>
+<td>Utility-first CSS framework for responsive design.</td>
 </tr>
 <tr>
-<td><strong>Recharts / Chart.js</strong></td>
-<td>Show mood analytics and charts.</td>
+<td><strong>Recharts</strong></td>
+<td>Display mood analytics, trends, and chart visualizations.</td>
 </tr>
 <tr>
 <td><strong>Axios</strong></td>
-<td>Manage API calls to the backend.</td>
+<td>Manage API calls with interceptors for token refresh.</td>
+</tr>
+<tr>
+<td><strong>Lucide React</strong></td>
+<td>Modern icon library for UI components.</td>
 </tr>
 </tbody>
 </table>
@@ -874,11 +914,11 @@
 <td>Secure authentication and authorization.</td>
 </tr>
 <tr>
-<td><strong>SMTP (Mailtrap / Gmail)</strong></td>
+<td><strong>SMTP (Gmail)</strong></td>
 <td>Send verification and booking emails.</td>
 </tr>
 <tr>
-<td><strong>pytest / Django Tests</strong></td>
+<td><strong>pytest Tests</strong></td>
 <td>Run automated backend tests.</td>
 </tr>
 </tbody>
@@ -938,11 +978,22 @@
 <hr>
 <h2 id="key-integrations">Key Integrations<a class="headerlink" href="#key-integrations" title="Permanent link">¶</a></h2>
 <ul>
-<li><strong>JWT Authentication</strong> → Secure token-based login.  </li>
-<li><strong>Email System</strong> → Manage verification and notifications.  </li>
-<li><strong>PWA Support</strong> → App-like web experience.  </li>
-<li><strong>Charts</strong> → Visual mood trends and reports.  </li>
-<li><strong>CI/CD Pipeline</strong> → Auto testing and deployment with GitHub Actions.  </li>
+<li><strong>JWT Authentication with Token Refresh</strong> → Secure token-based login with automatic token refresh on 401 errors.  </li>
+<li><strong>Email System</strong> → Django email backend for verification and appointment confirmations.  </li>
+<li><strong>PWA Support</strong> → Full PWA capabilities with custom logo and caching.  </li>
+<li><strong>Charts with Daily Averages</strong> → Recharts visualization showing mood trends with intelligent daily averaging.  </li>
+<li><strong>Timezone Handling</strong> → IST (Asia/Kolkata) timezone for consistent mood data aggregation.</li>
+<li><strong>Role-Based Access Control</strong> → Flexible role system with many-to-many user-role relationships.</li>
+<li><strong>Soft Delete Pattern</strong> → All models support soft deletion for data integrity.</li>
+</ul>
+<hr>
+<h2 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>UUID Primary Keys</strong> → All main models use UUID for better security and scalability.</li>
+<li><strong>Soft Delete Implementation</strong> → SoftDeleteModel base class with deleted_at timestamps.</li>
+<li><strong>Custom User Manager</strong> → Extends Django's BaseUserManager with soft delete support.</li>
+<li><strong>Junction Tables</strong> → UserRole table for many-to-many user-role relationships.</li>
+<li><strong>Unique Constraints</strong> → Database-level constraints for data integrity (e.g., active appointments only).</li>
 </ul>
 <hr>
 

@@ -523,9 +523,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uc-03-user-adds-daily-mood-entry" class="md-nav__link">
+  <a href="#uc-03-user-adds-mood-entry" class="md-nav__link">
     <span class="md-ellipsis">
-      UC-03: User Adds Daily Mood Entry
+      UC-03: User Adds Mood Entry
     </span>
   </a>
   
@@ -824,6 +824,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical/CI-CD-pipeline-and-deployment-flow.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD Pipeline and Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -898,7 +921,7 @@
 <h2 id="primary-use-cases">Primary Use Cases<a class="headerlink" href="#primary-use-cases" title="Permanent link">¶</a></h2>
 <hr>
 <h3 id="uc-01-user-registers-and-verifies-account">UC-01: User Registers and Verifies Account<a class="headerlink" href="#uc-01-user-registers-and-verifies-account" title="Permanent link">¶</a></h3>
-<p><strong>Actor:</strong> Patient (User)  </p>
+<p><strong>Actor:</strong> Patient </p>
 <p><strong>Goal:</strong> To create an account and verify email before using the system.
 <strong>Flow:</strong></p>
 <ol>
@@ -932,55 +955,72 @@
 <li>If the account is not verified, login is denied with prompt to verify email.</li>
 </ul>
 <hr>
-<h3 id="uc-03-user-adds-daily-mood-entry">UC-03: User Adds Daily Mood Entry<a class="headerlink" href="#uc-03-user-adds-daily-mood-entry" title="Permanent link">¶</a></h3>
-<p><strong>Actor:</strong> Patient (User)<br>
-<strong>Goal:</strong> To log their emotional state for the day.</p>
+<h3 id="uc-03-user-adds-mood-entry">UC-03: User Adds Mood Entry<a class="headerlink" href="#uc-03-user-adds-mood-entry" title="Permanent link">¶</a></h3>
+<p><strong>Actor:</strong> Patient 
+<strong>Goal:</strong> To log their emotional state at any time during the day.</p>
 <p><strong>Flow:</strong></p>
 <ol>
 <li>User logs into the system.  </li>
 <li>Opens the <strong>Mood Tracker</strong> section.  </li>
-<li>Selects a mood score (1-5 emoji scale).  </li>
-<li>Optionally adds a short note about their day.  </li>
+<li>Selects a mood score (1-5 emoji scale: Very Sad 😢 to Very Happy 😄).  </li>
+<li>Optionally adds a short note about their current feelings.  </li>
 <li>Clicks <strong>Save Entry</strong>.  </li>
-<li>System stores the entry and updates 7-day analytics.</li>
+<li>System stores the entry with timestamp and updates analytics.</li>
 </ol>
 <p><strong>Alternative:</strong></p>
 <ul>
-<li>If user already submitted an entry today, system prevents duplicate entry.  </li>
+<li>User can submit <strong>multiple entries per day</strong> to track mood changes throughout the day.</li>
 <li>If mood score is not selected, form submission fails.</li>
+<li>Each entry is timestamped for accurate tracking.</li>
 </ul>
 <hr>
 <h3 id="uc-04-user-views-mood-history-analytics">UC-04: User Views Mood History &amp; Analytics<a class="headerlink" href="#uc-04-user-views-mood-history-analytics" title="Permanent link">¶</a></h3>
-<p><strong>Actor:</strong> Patient (User)<br>
-<strong>Goal:</strong> To view their previous mood logs and trends.</p>
+<p><strong>Actor:</strong> Patient 
+<strong>Goal:</strong> To view their previous mood logs and trends with detailed analytics.</p>
 <p><strong>Flow:</strong></p>
 <ol>
-<li>User goes to the <strong>Mood History</strong> page.  </li>
-<li>System retrieves mood entries from the database.  </li>
-<li>Displays data as a list and chart view (weekly/monthly).  </li>
-<li>Shows 7-day average mood trend (improving, stable, or declining).  </li>
+<li>User goes to the <strong>Mood Tracker</strong> page and selects <strong>History &amp; Trends</strong> tab.  </li>
+<li>System retrieves all mood entries from the database.  </li>
+<li><strong>Recent Entries Section</strong>: Displays list of recent mood entries with timestamps (date and time).</li>
+<li><strong>Mood Trends Chart</strong>: </li>
+<li>Toggle between 7 Days and 30 Days view.</li>
+<li>Chart shows daily average mood scores (when multiple entries exist per day).</li>
+<li>Y-axis clearly labeled as "Mood Score".</li>
+<li>X-axis shows dates.</li>
+<li><strong>Analytics Summary</strong>: </li>
+<li>Shows average mood score calculated as average of daily averages.</li>
+<li>Displays trend indicator with emoji (improving, stable, or declining).</li>
 </ol>
 <p><strong>Alternative:</strong></p>
 <ul>
-<li>If no mood entries exist, show message: “No data available yet.”</li>
+<li>If no mood entries exist, show message: "No data available yet."</li>
+<li>If multiple entries exist for a day, that day's chart point represents the daily average.</li>
 </ul>
 <hr>
 <h3 id="uc-05-system-suggests-mindfulness-content">UC-05: System Suggests Mindfulness Content<a class="headerlink" href="#uc-05-system-suggests-mindfulness-content" title="Permanent link">¶</a></h3>
 <p><strong>Actor:</strong> System (triggered for User)<br>
-<strong>Goal:</strong> To recommend wellness content based on mood history.</p>
+<strong>Goal:</strong> To recommend personalized wellness content based on recent mood trends.</p>
 <p><strong>Flow:</strong> </p>
 <ol>
-<li>System checks the user’s average mood score for the last 7 days.  </li>
-<li>Applies rule-based logic:  </li>
-<li>Score ≤ 2 → Show uplifting content.  </li>
-<li>Score = 3 → Show neutral/maintenance tips.  </li>
-<li>Score ≥ 4 → Show calming or gratitude exercises.  </li>
-<li>Fetches relevant approved content from the content library.  </li>
-<li>Displays the tips on the user’s dashboard.  </li>
+<li>User navigates to <strong>Daily Tips</strong> or <strong>Recommendations</strong> page.</li>
+<li>System calculates 7-day average mood using <strong>average of daily averages</strong> method:</li>
+<li>Groups mood entries by date (IST timezone).</li>
+<li>Calculates daily average for each date with entries.</li>
+<li>Calculates overall average from daily averages.</li>
+<li>Applies rule-based logic to determine category:  </li>
+<li>Score ≤ 2 → Show "uplifting" content  </li>
+<li>Score = 3 → Show "maintenance" content  </li>
+<li>Score ≥ 4 → Show "calming" or "gratitude" content</li>
+<li>Fetches 3 random content items from the matched category.</li>
+<li>Displays:</li>
+<li>Average mood score (7 days) with emoji</li>
+<li>Recommended focus category</li>
+<li>3 wellness tips/exercises with titles and descriptions</li>
 </ol>
 <p><strong>Alternative:</strong></p>
 <ul>
-<li>If no approved content exists in that category, display fallback message: “No new recommendations today.”</li>
+<li>If user has no mood data in the last 7 days, display message: "No recent mood data available."</li>
+<li>If no content exists in the matched category, show fallback message.</li>
 </ul>
 <hr>
 <h3 id="uc-06-user-browses-therapist-directory">UC-06: User Browses Therapist Directory<a class="headerlink" href="#uc-06-user-browses-therapist-directory" title="Permanent link">¶</a></h3>
@@ -1001,19 +1041,33 @@
 <hr>
 <h3 id="uc-07-user-books-an-appointment">UC-07: User Books an Appointment<a class="headerlink" href="#uc-07-user-books-an-appointment" title="Permanent link">¶</a></h3>
 <p><strong>Actor:</strong> Patient (User)<br>
-<strong>Goal:</strong> To schedule a session with a therapist.</p>
+<strong>Goal:</strong> To schedule a therapy session with proper validation.</p>
 <p><strong>Flow:</strong></p>
 <ol>
-<li>User views a therapist’s profile.  </li>
-<li>Selects an available date and time slot.  </li>
-<li>Clicks <strong>Book Appointment</strong>.  </li>
-<li>System checks slot availability.  </li>
-<li>System creates an appointment record and sends email confirmation to both user and therapist.  </li>
+<li>User views a therapist's profile in the directory.</li>
+<li>Clicks <strong>Book Appointment</strong> button.</li>
+<li><strong>Step 1 - Consultation Mode</strong>: Selects Video Call or In-Person (auto-advances to next step).</li>
+<li><strong>Step 2 - Schedule Selection</strong>:</li>
+<li>Selects a future date from the calendar.</li>
+<li>System fetches therapist's availability for that day of the week.</li>
+<li>System fetches already booked slots for that specific date.</li>
+<li>Displays available time slots (filtering out past times if today, and booked slots).</li>
+<li>User selects an available time slot.</li>
+<li>Clicks <strong>Book Appointment</strong>.</li>
+<li><strong>Backend Validation</strong>:</li>
+<li>Checks if appointment date/time is in the past (rejects if true).</li>
+<li>Checks for double-booking (rejects if slot already booked).</li>
+<li>System creates appointment record (status: 'pending').</li>
+<li>Sends confirmation email to both patient and therapist with appointment details.</li>
+<li>Displays success popup with confirmation message and email notification info.</li>
+<li>User manually closes the popup.</li>
 </ol>
 <p><strong>Alternative:</strong></p>
 <ul>
-<li>If slot is already booked, system shows: “This slot is no longer available.”  </li>
-<li>If email fails to send, system still confirms booking in dashboard and retries email later.</li>
+<li>If appointment is in the past, system shows: "Cannot book appointments in the past."</li>
+<li>If slot is already booked, system shows: "This time slot is already booked."</li>
+<li>If current hour equals or passes the slot time on current day, slot is not shown.</li>
+<li>Success popup persists until user manually closes it.</li>
 </ul>
 <hr>
 <h3 id="uc-08-therapist-views-upcoming-appointments">UC-08: Therapist Views Upcoming Appointments<a class="headerlink" href="#uc-08-therapist-views-upcoming-appointments" title="Permanent link">¶</a></h3>
@@ -1088,18 +1142,23 @@
 <hr>
 <h3 id="uc-12-admin-adds-mindfulness-content">UC-12: Admin Adds Mindfulness Content<a class="headerlink" href="#uc-12-admin-adds-mindfulness-content" title="Permanent link">¶</a></h3>
 <p><strong>Actor:</strong> Admin<br>
-<strong>Goal:</strong> To upload and manage mindfulness content.</p>
+<strong>Goal:</strong> To create and manage wellness content for recommendations.</p>
 <p><strong>Flow:</strong></p>
 <ol>
-<li>Admin goes to <strong>Content Management</strong>.  </li>
-<li>Clicks <strong>Add New Content</strong>.  </li>
-<li>Enters title, description, and selects category (Calming / Uplifting / Maintenance / Gratitude).  </li>
+<li>Admin logs into Django Admin panel.</li>
+<li>Navigates to <strong>Content</strong> section.  </li>
+<li>Clicks <strong>Add Content</strong>.  </li>
+<li>Enters:</li>
+<li>Title (max 150 characters)</li>
+<li>Description (mindfulness tip or exercise)</li>
+<li>Category: uplifting, calming, maintenance, or gratitude</li>
 <li>Clicks <strong>Save</strong>.  </li>
-<li>Content appears in “Pending Approval” until approved.</li>
+<li>Content is immediately available for recommendations (no approval workflow).</li>
 </ol>
 <p><strong>Alternative:</strong></p>
 <ul>
-<li>If the content title already exists, system shows a duplicate error.  </li>
+<li>Admin can edit or delete existing content at any time.</li>
+<li>Deleted content uses soft delete (deleted_at timestamp).  </li>
 </ul>
 <hr>
 <h3 id="uc-13-admin-views-system-analytics">UC-13: Admin Views System Analytics<a class="headerlink" href="#uc-13-admin-views-system-analytics" title="Permanent link">¶</a></h3>
