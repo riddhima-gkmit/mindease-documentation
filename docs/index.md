@@ -25,11 +25,11 @@ MindEase automates daily mood tracking, appointment booking, and delivers simple
 - **Recommendations:** Rule-based tips delivered from recent 7-day mood trends.
 
 ### Key Features
-- Email + JWT authentication and role-based access (patient / therapist / admin)  
-- One-entry-per-day mood logging with a weekly analytics endpoint  
-- Therapist profiles + availability and approval workflow for admins  
-- Appointment booking with conflict prevention and session notes  
-- Admin-managed content library and rule-based recommendations
+- Email + JWT authentication and role-based access (patient / therapist / admin) with flexible Role model  
+- Multiple mood entries per day with daily average calculation and analytics endpoints (7-day and 30-day trends)  
+- Therapist profiles + availability with admin approval workflow  
+- Appointment booking with conflict prevention, past date validation, and session notes  
+- Admin-managed content library with rule-based recommendations based on mood trends
 
 ---
 

@@ -54,8 +54,12 @@ The objective of this test plan is to validate all functional and non-functional
 ### **API Testing**
 
 * Test all endpoints (`/auth/`, `/therapists/`, `/appointments/`, `/mood/`, `/recommendations/`) using Postman.
-* Validate authentication, response codes, data integrity, and error handling.
+* **New endpoint**: `/appointments/therapist/{therapist_id}/booked-slots/` - verify returns booked slots for date.
+* **New endpoint**: `/mood/chart-data/` - verify returns daily averages with configurable days parameter.
+* Validate all HTTP status codes follow REST best practices (200, 201, 400, 401, 403, 404, 409, 500).
+* Validate authentication with JWT and automatic token refresh on 401.
 * Confirm unauthorized access is properly restricted.
+* Test IST timezone handling for mood data.
 
 ### **Unit Testing**
 
@@ -89,40 +93,64 @@ The objective of this test plan is to validate all functional and non-functional
 
 * Ensure User, Therapist, and Admin roles access only allowed endpoints
 * Restrict admin-only features to non-admin users
+* **Verify Role model and UserRole junction table implementation**
+* Test multiple role assignment per user
+* Validate active/revoked roles (revoked_at field)
+* Verify Django Admin shows only User, Content, and TherapistProfile models
 
 ### **FR-03: Therapist Module**
 
 * Create/update therapist profile
 * Verify clinic address, specialization, and experience fields
-* Manage therapist availability slots
-* Admin approval workflow validation
+* **Validate experience years limited to 0-55 (frontend and backend)**
+* Manage therapist availability slots (recurring weekly schedule)
+* Admin approval workflow validation (is_approved flag)
+* Verify unapproved therapists hidden from directory
+* Test API endpoint for fetching booked slots by therapist and date
 
 ### **FR-04: Appointment Booking**
 
-* Book appointment with available therapist slot
-* Confirm booking via email
-* Cancel appointment (by user only before session)
+* Select consultation mode (Video Call / In-Person) with auto-advance to next step
+* Choose future date from calendar (past dates disabled)
+* View available time slots based on therapist's weekly schedule
+* Verify booked slots are disabled (fetched from API)
+* Verify past time slots filtered out for current date
+* **Validate backend prevents booking appointments in the past**
+* Confirm duplicate booking prevention at database level
+* Booking confirmation via email to both patient and therapist
+* Persistent success popup with manual close (no auto-dismiss)
+* Cancel appointment (by user before session)
 * Therapist adds session notes post-appointment
-* Validate duplicate booking prevention
 
 ### **FR-05: Mood Tracker**
 
-* Log daily mood entry (1–5 scale with note)
-* Prevent multiple entries for the same day
+* Log mood entry (1–5 scale with note) - **multiple entries per day allowed**
+* Each entry timestamped with date and time
 * Edit previous mood entries
-* Validate weekly mood analytics and average trend
+* Validate mood history displays all entries with timestamps
+* Verify 7-day and 30-day mood analytics with daily average calculation
+* Confirm chart shows daily averages when multiple entries exist per day
+* Validate overall average calculated as average of daily averages (not simple average)
+* Verify Y-axis labeled as "Mood Score" on chart
 
 ### **FR-06: Recommendation Engine**
 
-* Generate recommendations based on last 7-day average mood
-* Fetch appropriate mindfulness content by category
-* Admin can CRUD wellness content
+* Generate recommendations based on last 7-day **average of daily averages**
+* Verify IST timezone used for consistent date calculations
+* Fetch 3 random content items from matched category
+* Display average mood score (rounded to 2 decimals) with emoji
+* Categories: uplifting (≤2), maintenance (=3), calming/gratitude (≥4)
+* Verify "No recent mood data available" message when no data exists
+* Admin can create, edit, and delete wellness content (direct publishing, no approval workflow)
 
 ### **FR-07: Admin Panel**
 
-* CRUD operations for users and therapists
-* Approve therapist profiles and content
-* View aggregated analytics (bookings, active users, common moods)
+* CRUD operations for users with inline role management
+* Approve therapist profiles (is_approved flag)
+* Create, edit, delete recommendation content (direct publishing)
+* Verify soft delete implementation (deleted_at timestamps)
+* Test UUID primary keys across all models
+* Validate visible models: User, Content, TherapistProfile only
 
 ### **FR-08: PWA Features**
 

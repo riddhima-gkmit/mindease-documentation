@@ -90,6 +90,7 @@ nav:
       - Schema Design: technical/schema-design.md
       - Authentication: technical/authentication.md
       - API Design: technical/api-design.md
+      - CI/CD Pipeline and Deployment: technical/CI-CD-pipeline-and-deployment-flow.md
   - Edge Cases & Error Handling: edge-cases.md
   - Future Enhancements: future.md
   

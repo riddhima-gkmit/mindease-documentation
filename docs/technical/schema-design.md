@@ -8,16 +8,16 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 ### 1.1 roles
 
-| Field       | Type       | Description                                |
-|-------------|------------|--------------------------------------------|
-| id          | SERIAL PK  | Auto-increment role ID                     |
-| name        | VARCHAR    | Role name (`admin`, `therapist`, `patient`)|
-| description | TEXT       | Short description of the role              |
-| created_at  | TIMESTAMPTZ| Timestamp of creation                      |
-| updated_at  | TIMESTAMPTZ| Last updated timestamp                     |
+| Field        | Type       | Description                                |
+|--------------|------------|--------------------------------------------|
+| id           | SERIAL PK  | Auto-increment role ID                     |
+| name         | VARCHAR(20)| Role name (`admin`, `therapist`, `patient`), unique |
+| description  | TEXT       | Short description of the role (nullable)   |
+| created_at   | TIMESTAMPTZ| Timestamp of creation                      |
+| updated_at   | TIMESTAMPTZ| Last updated timestamp                     |
 
 **Indexes:**  
-- `ux_roles_name` UNIQUE(name) - ensures each role name is unique.
+- `ix_role_name` on `(name)` - ensures each role name is unique and enables fast role lookups.
 
 ---
 
@@ -26,17 +26,19 @@ This document describes the complete database schema for the **MindEase - Mood T
 | Field       | Type       | Description                                  |
 |-------------|------------|----------------------------------------------|
 | id          | SERIAL PK  | Auto-increment mapping ID                    |
-| user_id     | INT FK     | References `users.id` (user assigned the role) |
+| user_id     | UUID FK    | References `users.id` (user assigned the role) |
 | role_id     | INT FK     | References `roles.id` (assigned role)        |
-| assigned_at | TIMESTAMPTZ| When the role was assigned                    |
-| revoked_at  | TIMESTAMPTZ| When the role was revoked (optional)          |
+| assigned_at | TIMESTAMPTZ| When the role was assigned (auto-generated)   |
+| revoked_at  | TIMESTAMPTZ| When the role was revoked (nullable)          |
 
 **Indexes:**  
-- `ux_user_roles_user_role` UNIQUE(user_id, role_id, assigned_at) - prevent duplicate immediate assignments (optional depending on policy).  
-- `ix_user_roles_user` on `(user_id)` - fast lookup of a user’s roles.  
-- `ix_user_roles_role` on `(role_id)` - fast lookup of users by role.
+- `ix_user_role` on `(user_id, role_id)` - fast lookup of specific user-role combinations.  
+- `ix_user_role_active` on `(user_id, revoked_at)` - fast lookup of active roles per user.
 
-> **Note:** `user_roles` is a bridge table enabling flexible role assignment (one user may hold multiple roles over time if desired). If your policy allows only one active role per user, make `user_roles` constrained accordingly (e.g., by checking active periods or adding a uniqueness constraint on user_id with `revoked_at IS NULL`).
+**Constraints:**
+- Unique together on `(user, role)` to prevent duplicate role assignments for the same user.
+
+> **Note:** `user_roles` is a junction table implementing a many-to-many relationship between users and roles. Each user can have multiple roles, and roles can be revoked by setting `revoked_at`. The `is_active` property checks if `revoked_at IS NULL`.
 
 ---
 
@@ -44,20 +46,31 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 | Field       | Type        | Description |
 |-------------|-------------|-------------|
-| id          | SERIAL PK   | Auto-increment user ID |
-| username    | VARCHAR     | Display username |
-| email       | VARCHAR     | User’s email address |
-| password_hash | VARCHAR   | Hashed password |
-| first_name  | VARCHAR     | First name |
-| last_name   | VARCHAR     | Last name |
-| email_verified | BOOLEAN  | Whether email is verified |
-| created_at  | TIMESTAMPTZ | Account creation timestamp |
-| updated_at  | TIMESTAMPTZ | Last update timestamp |
-| deleted_at  | TIMESTAMPTZ | Soft delete timestamp |
+| id          | UUID PK     | Primary key (UUID, auto-generated) |
+| username    | VARCHAR(150)| Display username (nullable, blank allowed) |
+| email       | VARCHAR     | User's email address (unique, used for login) |
+| password    | VARCHAR     | Hashed password (Django managed) |
+| first_name  | VARCHAR(150)| First name (only letters and spaces allowed) |
+| last_name   | VARCHAR(150)| Last name (only letters and spaces allowed) |
+| email_verified | BOOLEAN  | Whether email is verified (default: false) |
+| is_active   | BOOLEAN     | Account active status |
+| is_staff    | BOOLEAN     | Staff status for Django admin |
+| is_superuser| BOOLEAN     | Superuser status |
+| date_joined | TIMESTAMPTZ | Account creation timestamp |
+| last_login  | TIMESTAMPTZ | Last login timestamp |
+| deleted_at  | TIMESTAMPTZ | Soft delete timestamp (nullable) |
+
+**Relationships:**
+- Many-to-Many with `roles` through `user_roles` junction table
 
 **Indexes:**  
-- `ux_users_email_lower` on `lower(email)` - case-insensitive uniqueness lookup (enforce unique index in DB if desired).  
-- `ix_users_created_at` on `(created_at)` - for administrative queries sorted by signup date.
+- `ix_user_email_lower` on `LOWER(email)` - case-insensitive email lookup for faster login.  
+- `deleted_at` indexed for soft delete filtering.
+
+**Validation:**
+- Email must be unique
+- Password must be > 6 characters, contain at least 1 uppercase letter and 1 special character
+- First name and last name can only contain letters and spaces
 
 ---
 
@@ -65,40 +78,41 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 | Field            | Type         | Description |
 |------------------|--------------|-------------|
-| id               | SERIAL PK    | Therapist profile ID |
-| user_id          | INT FK       | Linked user account (`users.id`) |
-| specialization   | VARCHAR      | Therapist’s specialty |
-| experience_years | SMALLINT     | Years of experience |
-| consultation_mode| VARCHAR      | `online`, `in-person`, or `both` |
-| about            | TEXT         | Bio or description |
-| clinic_address   | TEXT         | Clinic location (if applicable) |
-| is_approved      | BOOLEAN      | Admin approval status |
-| created_at       | TIMESTAMPTZ  | Created timestamp |
-| updated_at       | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at       | TIMESTAMPTZ  | Soft delete timestamp |
+| id               | UUID PK      | Therapist profile ID (auto-generated UUID) |
+| user_id          | UUID FK      | Linked user account (OneToOne with `users.id`) |
+| specialization   | VARCHAR(100) | Therapist's specialty |
+| experience_years | POSITIVE INT | Years of experience (0-55) |
+| consultation_mode| VARCHAR(10)  | `online`, `offline`, or `both` (default: `online`) |
+| about            | TEXT         | Bio or description (nullable) |
+| clinic_address   | TEXT         | Clinic location for offline appointments (nullable) |
+| is_approved      | BOOLEAN      | Admin approval status (default: false) |
+| created_at       | TIMESTAMPTZ  | Created timestamp (auto-generated) |
+| deleted_at       | TIMESTAMPTZ  | Soft delete timestamp (nullable) |
+
+**Constraints:**
+- `ux_therapist_user` UNIQUE(user_id) - ensures one profile per user (OneToOne relationship).
 
 **Indexes:**  
-- `ux_therapist_user` UNIQUE(user_id) - one profile per user.  
-- `ix_therapist_specialization_approved` on `(specialization, is_approved)` - fast filtering for approved therapists.
+- `ix_therapist_spec_approved` on `(specialization, is_approved)` - fast filtering for approved therapists.
+
+**Validation:**
+- experience_years must be between 0 and 55 (frontend and backend validation)
 
 ---
 
-### 1.5 availability_slots
+### 1.5 therapist_availabilities
 
 | Field       | Type         | Description |
 |-------------|--------------|-------------|
-| id          | SERIAL PK    | Slot ID |
-| therapist_id| INT FK       | References `therapist_profiles.id` |
-| day_of_week | SMALLINT     | Day (0–6: Sun–Sat) |
+| id          | AUTO PK      | Availability slot ID (auto-increment) |
+| therapist_id| UUID FK      | References `therapist_profiles.id` |
+| day_of_week | VARCHAR(10)  | Day name (e.g., 'Monday', 'Tuesday', etc.) |
 | start_time  | TIME         | Slot start time |
 | end_time    | TIME         | Slot end time |
-| status      | VARCHAR      | `available` or `booked` |
-| created_at  | TIMESTAMPTZ  | Created timestamp |
-| updated_at  | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp |
+| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp (nullable) |
 
 **Indexes:**  
-- `ix_slots_therapist_day_time` on `(therapist_id, day_of_week, start_time)` - efficient retrieval of slots for a therapist/day.
+- `ix_slot_available` on `(therapist_id, day_of_week, start_time)` - efficient retrieval of slots for a therapist by day.
 
 ---
 
@@ -106,21 +120,25 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 | Field            | Type         | Description |
 |------------------|--------------|-------------|
-| id               | SERIAL PK    | Appointment ID |
-| therapist_id     | INT FK       | References `therapist_profiles.id` |
-| user_id          | INT FK       | References `users.id` (patient) |
-| slot_id          | INT FK       | References `availability_slots.id` |
-| appointment_date | DATE         | Appointment date |
+| id               | UUID PK      | Appointment ID (auto-generated UUID) |
+| therapist_id     | UUID FK      | References `therapist_profiles.id` |
+| user_id          | UUID FK      | References `users.id` (patient) |
+| date             | DATE         | Appointment date |
 | time_slot        | TIME         | Time of session |
-| status           | VARCHAR      | `pending`, `confirmed`, `cancelled`, `completed` |
-| therapist_note   | TEXT         | Therapist notes (visible to patient after session) |
-| created_at       | TIMESTAMPTZ  | Created timestamp |
-| updated_at       | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at       | TIMESTAMPTZ  | Soft delete timestamp |
+| status           | VARCHAR(20)  | `pending`, `confirmed`, `cancelled`, `completed` (default: `pending`) |
+| therapist_note   | TEXT         | Therapist notes (visible to patient, nullable) |
+| created_at       | TIMESTAMPTZ  | Created timestamp (auto-generated) |
+| deleted_at       | TIMESTAMPTZ  | Soft delete timestamp (nullable) |
+
+**Constraints:**
+- `ux_appt_unique_active` UNIQUE(therapist_id, date, time_slot) WHERE status IN ('pending', 'confirmed') - prevents double-booking for active appointments only.
 
 **Indexes:**  
-- `ux_appt_unique` UNIQUE(therapist_id, appointment_date, time_slot) - prevents double-booking of same therapist slot.  
-- `ix_appt_user_recent` on `(user_id, appointment_date DESC)` - fast retrieval of recent user appointments.
+- `ix_appt_user_date` on `(user_id, -date)` - fast retrieval of recent user appointments (descending order).
+
+**Validation:**
+- Appointment date and time cannot be in the past (server-side validation)
+- Prevents booking if slot is already booked for the same therapist, date, and time
 
 ---
 
@@ -128,72 +146,48 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 | Field       | Type         | Description |
 |-------------|--------------|-------------|
-| id          | SERIAL PK    | Mood entry ID |
-| user_id     | BIGINT FK    | References `users.id` |
-| mood_score  | SMALLINT     | Mood rating (1–5) |
-| note        | TEXT         | Optional note |
-| created_at  | DATE         | Date of entry (one per day) |
-| updated_at  | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp |
+| id          | UUID PK      | Mood entry ID (auto-generated UUID) |
+| user_id     | UUID FK      | References `users.id` |
+| mood_score  | INTEGER      | Mood rating (1–5): 1=Very Sad 😢, 2=Sad 🙁, 3=Neutral 😐, 4=Happy 🙂, 5=Very Happy 😄 |
+| note        | TEXT         | Optional note (nullable) |
+| created_at  | TIMESTAMPTZ  | Timestamp of entry creation (auto-generated) |
+| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp (nullable) |
 
 **Indexes:**  
-- `ux_mood_user_date` UNIQUE(user_id, created_at) - enforces one mood entry per user per day.  
-- `ix_mood_recent` on `(user_id, created_at DESC)` - quick retrieval of latest entries.
+- `ix_mood_user_date_desc` on `(user_id, -created_at)` - quick retrieval of latest entries in descending order.
+
+**Changes from Original:**
+- **REMOVED** unique constraint on `(user_id, created_at)` - now allows **multiple mood entries per day**
+- Mood chart data calculates **daily averages** when multiple entries exist for the same day
+- Overall average mood is calculated as the **average of daily averages** (not simple average)
 
 ---
 
-### 1.8 contents
+### 1.8 recommendations
 
 | Field       | Type         | Description |
 |-------------|--------------|-------------|
-| id          | SERIAL PK    | Content ID |
-| title       | VARCHAR      | Optional title |
-| description | TEXT         | Mindfulness tip or exercise |
-| category    | VARCHAR      | Optional category |
-| is_approved | BOOLEAN      | Approval flag |
-| created_by  | INT FK       | References `users.id` (admin who created) |
-| created_at  | TIMESTAMPTZ  | Created timestamp |
-| updated_at  | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp |
+| id          | AUTO PK      | Content ID (auto-increment) |
+| title       | VARCHAR(150) | Content title |
+| description | TEXT         | Mindfulness tip or exercise description |
+| category    | VARCHAR(50)  | Category: `uplifting`, `calming`, `maintenance`, or `gratitude` |
+| created_at  | TIMESTAMPTZ  | Created timestamp (auto-generated) |
+| deleted_at  | TIMESTAMPTZ  | Soft delete timestamp (nullable) |
 
-**Indexes:**  
-- `ix_content_approved_category` on `(is_approved, category)` - fetch approved content quickly.
-
----
-
-### 1.9 recommendation_rules
-
-| Field          | Type         | Description |
-|----------------|--------------|-------------|
-| id             | SERIAL PK    | Rule ID |
-| rule_name      | VARCHAR      | Human-friendly rule name |
-| condition_expr | TEXT         | Condition expression (e.g., `avg_mood < 3`) |
-| category_to_show| VARCHAR     | Category of content to show |
-| is_active      | BOOLEAN      | Active flag |
-| created_at     | TIMESTAMPTZ  | Created timestamp |
-| updated_at     | TIMESTAMPTZ  | Updated timestamp |
-| deleted_at     | TIMESTAMPTZ  | Soft delete timestamp |
-
-**Indexes:**  
-- `ix_rules_active` on `(is_active)` - quick filtering of active rules.
+**Simplified Model:**
+- Removed `is_approved` field - content is managed directly by admins
+- Removed `created_by` field - simplified content management
+- Content is accessible immediately after creation by admin
 
 ---
 
-### 1.10 password_reset_tokens
+### 1.9 password_reset_tokens (Django built-in)
 
-| Field       | Type         | Description |
-|-------------|--------------|-------------|
-| id          | SERIAL PK    | Token ID |
-| user_id     | INT FK       | References `users.id` |
-| token       | VARCHAR      | Secure random token |
-| purpose     | VARCHAR      | Purpose (e.g., `password_reset`, `verify_email`) |
-| expires_at  | TIMESTAMPTZ  | Expiration time |
-| used        | BOOLEAN      | Whether token was consumed |
-| created_at  | TIMESTAMPTZ  | Created timestamp |
-
-**Indexes:**  
-- `ux_token_unique` UNIQUE(token) - ensures token uniqueness.  
-- `ix_token_user_expiry` on `(user_id, expires_at)` - find valid tokens quickly.
+Password reset and email verification are handled using Django's built-in token generation system:
+- Tokens are generated using `default_token_generator` from Django
+- Tokens are time-limited and single-use
+- User ID is encoded in the URL using `urlsafe_base64_encode`
+- No separate database table needed - tokens are cryptographically generated and validated
 
 ---
 
@@ -210,16 +204,13 @@ This document describes the complete database schema for the **MindEase - Mood T
 | **roles**          | **user_roles**      | 1 → N        | A role (admin/therapist/patient) can be assigned to many users (historical or concurrent assignments). |
 | **users**          | **user_roles**      | 1 → N        | A user can have multiple role assignment records (current or historical). |
 | **users**          | **therapist_profiles** | 1 → 0..1  | A user may have one therapist profile (or none). |
-| **therapist_profiles** | **availability_slots** | 1 → N  | A therapist publishes many availability slots. |
+| **therapist_profiles** | **therapist_availabilities** | 1 → N  | A therapist publishes many availability slots (recurring weekly patterns). |
 | **therapist_profiles** | **appointments**  | 1 → N        | A therapist handles many appointments. |
 | **users**          | **appointments**    | 1 → N        | A user (patient) can book many appointments. |
-| **availability_slots** | **appointments** | 1 → N      | A slot can be linked to multiple appointment records (depending on policy) — usually one active booking per slot is enforced by business rule. |
-| **users**          | **mood_entries**    | 1 → N        | Users log multiple mood entries over time. |
-| **users**          | **contents**        | 1 → N        | Admin users create content pieces. |
-| **recommendation_rules** | **contents**   | Logical      | Rules drive which content is recommended. |
-| **users**          | **password_reset_tokens** | 1 → N | Users can have multiple password/reset tokens (tracked over time). |
+| **users**          | **mood_entries**    | 1 → N        | Users log multiple mood entries over time (multiple entries per day allowed). |
+| N/A                | **recommendations** | N/A  | Content is managed by admins, no direct user relationship. |
 
-> **Clarification:** `user_roles` is the mapping table between `users` and `roles`. Use constraints (unique partial indexes or `revoked_at IS NULL`) to enforce single active role per user if that is a business requirement.
+> **Clarification:** `user_roles` is the mapping table between `users` and `roles`. Use constraints (unique partial indexes or `revoked_at IS NULL`) to enforce single active role per user.
 
 ---
 
@@ -227,21 +218,16 @@ This document describes the complete database schema for the **MindEase - Mood T
 
 | Index Name | Table | Fields | Purpose |
 |------------|-------|--------|---------|
-| `ux_roles_name` | roles | name | Unique role names |
-| `ux_user_roles_user_role` | user_roles | (user_id, role_id, assigned_at) | Prevent duplicate immediate assignments |
-| `ix_user_roles_user` | user_roles | user_id | Lookup roles by user |
-| `ix_user_roles_role` | user_roles | role_id | Lookup users by role |
-| `ux_users_email_lower` | users | lower(email) | Case-insensitive email uniqueness / fast login lookup |
-| `ix_users_created_at` | users | created_at | Admin queries by signup time |
-| `ux_therapist_user` | therapist_profiles | user_id | Ensure one profile per user |
-| `ix_therapist_specialization_approved` | therapist_profiles | (specialization, is_approved) | Filter approved therapists quickly |
-| `ix_slots_therapist_day_time` | availability_slots | (therapist_id, day_of_week, start_time) | Fast slot retrieval |
-| `ux_appt_unique` | appointments | (therapist_id, appointment_date, time_slot) | Prevent double booking |
-| `ix_appt_user_recent` | appointments | (user_id, appointment_date) | Fetch recent user appointments |
-| `ux_mood_user_date` | mood_entries | (user_id, created_at) | One mood entry per day |
-| `ix_mood_recent` | mood_entries | (user_id, created_at DESC) | Fast recent mood retrieval |
-| `ix_content_approved_category` | contents | (is_approved, category) | Fetch approved content quickly |
-| `ux_token_unique` | password_reset_tokens | token | Unique tokens |
+| `ix_role_name` | roles | name | Fast role name lookups |
+| `ix_user_role` | user_roles | (user_id, role_id) | Fast lookup of specific user-role combinations |
+| `ix_user_role_active` | user_roles | (user_id, revoked_at) | Fast lookup of active roles per user |
+| `ix_user_email_lower` | users | LOWER(email) | Case-insensitive email lookup for faster login |
+| `ux_therapist_user` | therapist_profiles | user_id | Ensure one profile per user (unique constraint) |
+| `ix_therapist_spec_approved` | therapist_profiles | (specialization, is_approved) | Filter approved therapists quickly |
+| `ix_slot_available` | therapist_availabilities | (therapist_id, day_of_week, start_time) | Fast slot retrieval |
+| `ux_appt_unique_active` | appointments | (therapist_id, date, time_slot) WHERE status IN ('pending', 'confirmed') | Prevent double booking for active appointments |
+| `ix_appt_user_date` | appointments | (user_id, -date) | Fetch recent user appointments (descending order) |
+| `ix_mood_user_date_desc` | mood_entries | (user_id, -created_at) | Fast recent mood retrieval (descending order) |
 
 ---
 
@@ -253,9 +239,9 @@ Functionality: automatically sets `updated_at = now()` on row updates.
 **Applied On:**  
 - `users`  
 - `therapist_profiles`  
-- `availability_slots`  
+- `therapist_availabilities`  
 - `appointments`  
-- `contents`  
+- `recommendations`  
 - `mood_entries`
 
 **Purpose:** Ensures consistent `updated_at` timestamps without requiring explicit updates in application code.

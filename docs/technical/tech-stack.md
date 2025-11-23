@@ -4,13 +4,15 @@
 
 | Technology | Purpose |
 |-------------|----------|
-| **React.js** | Build interactive and responsive UI. |
-| **PWA (Progressive Web App)** | Enable mobile-like experience and offline use. |
-| **Vite** | Fast React build and dev environment. |
-| **React Router** | Handle page navigation. |
-| **Material UI** | Ready-made responsive UI components. |
-| **Recharts / Chart.js** | Show mood analytics and charts. |
-| **Axios** | Manage API calls to the backend. |
+| **React.js (18+)** | Build interactive and responsive UI with TypeScript. |
+| **TypeScript** | Type-safe development with strict type checking. |
+| **PWA (Progressive Web App)** | Enable mobile-like experience with offline support and installability. |
+| **Vite** | Fast React build tool and dev environment with HMR. |
+| **React Router** | Handle client-side page navigation. |
+| **Tailwind CSS** | Utility-first CSS framework for responsive design. |
+| **Recharts** | Display mood analytics, trends, and chart visualizations. |
+| **Axios** | Manage API calls with interceptors for token refresh. |
+| **Lucide React** | Modern icon library for UI components. |
 
 ---
 
@@ -23,8 +25,8 @@
 | **Django REST Framework (DRF)** | Build RESTful APIs. |
 | **PostgreSQL** | Store users, moods, and appointments. |
 | **JWT (SimpleJWT)** | Secure authentication and authorization. |
-| **SMTP (Mailtrap / Gmail)** | Send verification and booking emails. |
-| **pytest / Django Tests** | Run automated backend tests. |
+| **SMTP (Gmail)** | Send verification and booking emails. |
+| **pytest Tests** | Run automated backend tests. |
 
 ---
 
@@ -51,11 +53,23 @@
 
 ## Key Integrations
 
-- **JWT Authentication** → Secure token-based login.  
-- **Email System** → Manage verification and notifications.  
-- **PWA Support** → App-like web experience.  
-- **Charts** → Visual mood trends and reports.  
-- **CI/CD Pipeline** → Auto testing and deployment with GitHub Actions.  
+- **JWT Authentication with Token Refresh** → Secure token-based login with automatic token refresh on 401 errors.  
+- **Email System** → Django email backend for verification and appointment confirmations.  
+- **PWA Support** → Full PWA capabilities with custom logo and caching.  
+- **Charts with Daily Averages** → Recharts visualization showing mood trends with intelligent daily averaging.  
+- **Timezone Handling** → IST (Asia/Kolkata) timezone for consistent mood data aggregation.
+- **Role-Based Access Control** → Flexible role system with many-to-many user-role relationships.
+- **Soft Delete Pattern** → All models support soft deletion for data integrity.
+
+---
+
+## Data Models
+
+- **UUID Primary Keys** → All main models use UUID for better security and scalability.
+- **Soft Delete Implementation** → SoftDeleteModel base class with deleted_at timestamps.
+- **Custom User Manager** → Extends Django's BaseUserManager with soft delete support.
+- **Junction Tables** → UserRole table for many-to-many user-role relationships.
+- **Unique Constraints** → Database-level constraints for data integrity (e.g., active appointments only).
 
 ---
 

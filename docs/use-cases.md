@@ -5,7 +5,7 @@
 ---
 
 ### UC-01: User Registers and Verifies Account
-**Actor:** Patient (User)  
+**Actor:** Patient 
 
 **Goal:** To create an account and verify email before using the system.
 **Flow:**
@@ -43,60 +43,77 @@
 
 ---
 
-### UC-03: User Adds Daily Mood Entry
-**Actor:** Patient (User)  
-**Goal:** To log their emotional state for the day.
+### UC-03: User Adds Mood Entry
+**Actor:** Patient 
+**Goal:** To log their emotional state at any time during the day.
 
 **Flow:**
 
 1. User logs into the system.  
 2. Opens the **Mood Tracker** section.  
-3. Selects a mood score (1-5 emoji scale).  
-4. Optionally adds a short note about their day.  
+3. Selects a mood score (1-5 emoji scale: Very Sad 😢 to Very Happy 😄).  
+4. Optionally adds a short note about their current feelings.  
 5. Clicks **Save Entry**.  
-6. System stores the entry and updates 7-day analytics.
+6. System stores the entry with timestamp and updates analytics.
 
 **Alternative:**
 
-- If user already submitted an entry today, system prevents duplicate entry.  
+- User can submit **multiple entries per day** to track mood changes throughout the day.
 - If mood score is not selected, form submission fails.
+- Each entry is timestamped for accurate tracking.
 
 ---
 
 ### UC-04: User Views Mood History & Analytics
-**Actor:** Patient (User)  
-**Goal:** To view their previous mood logs and trends.
+**Actor:** Patient 
+**Goal:** To view their previous mood logs and trends with detailed analytics.
 
 **Flow:**
 
-1. User goes to the **Mood History** page.  
-2. System retrieves mood entries from the database.  
-3. Displays data as a list and chart view (weekly/monthly).  
-4. Shows 7-day average mood trend (improving, stable, or declining).  
+1. User goes to the **Mood Tracker** page and selects **History & Trends** tab.  
+2. System retrieves all mood entries from the database.  
+3. **Recent Entries Section**: Displays list of recent mood entries with timestamps (date and time).
+4. **Mood Trends Chart**: 
+   - Toggle between 7 Days and 30 Days view.
+   - Chart shows daily average mood scores (when multiple entries exist per day).
+   - Y-axis clearly labeled as "Mood Score".
+   - X-axis shows dates.
+5. **Analytics Summary**: 
+   - Shows average mood score calculated as average of daily averages.
+   - Displays trend indicator with emoji (improving, stable, or declining).
 
 **Alternative:**
 
-- If no mood entries exist, show message: “No data available yet.”
+- If no mood entries exist, show message: "No data available yet."
+- If multiple entries exist for a day, that day's chart point represents the daily average.
 
 ---
 
 ### UC-05: System Suggests Mindfulness Content
 **Actor:** System (triggered for User)  
-**Goal:** To recommend wellness content based on mood history.
+**Goal:** To recommend personalized wellness content based on recent mood trends.
 
 **Flow:** 
 
-1. System checks the user’s average mood score for the last 7 days.  
-2. Applies rule-based logic:  
-   - Score ≤ 2 → Show uplifting content.  
-   - Score = 3 → Show neutral/maintenance tips.  
-   - Score ≥ 4 → Show calming or gratitude exercises.  
-3. Fetches relevant approved content from the content library.  
-4. Displays the tips on the user’s dashboard.  
+1. User navigates to **Daily Tips** or **Recommendations** page.
+2. System calculates 7-day average mood using **average of daily averages** method:
+   - Groups mood entries by date (IST timezone).
+   - Calculates daily average for each date with entries.
+   - Calculates overall average from daily averages.
+3. Applies rule-based logic to determine category:  
+   - Score ≤ 2 → Show "uplifting" content  
+   - Score = 3 → Show "maintenance" content  
+   - Score ≥ 4 → Show "calming" or "gratitude" content
+4. Fetches 3 random content items from the matched category.
+5. Displays:
+   - Average mood score (7 days) with emoji
+   - Recommended focus category
+   - 3 wellness tips/exercises with titles and descriptions
 
 **Alternative:**
 
-- If no approved content exists in that category, display fallback message: “No new recommendations today.”
+- If user has no mood data in the last 7 days, display message: "No recent mood data available."
+- If no content exists in the matched category, show fallback message.
 
 ---
 
@@ -120,20 +137,34 @@
 
 ### UC-07: User Books an Appointment
 **Actor:** Patient (User)  
-**Goal:** To schedule a session with a therapist.
+**Goal:** To schedule a therapy session with proper validation.
 
 **Flow:**
 
-1. User views a therapist’s profile.  
-2. Selects an available date and time slot.  
-3. Clicks **Book Appointment**.  
-4. System checks slot availability.  
-5. System creates an appointment record and sends email confirmation to both user and therapist.  
+1. User views a therapist's profile in the directory.
+2. Clicks **Book Appointment** button.
+3. **Step 1 - Consultation Mode**: Selects Video Call or In-Person (auto-advances to next step).
+4. **Step 2 - Schedule Selection**:
+   - Selects a future date from the calendar.
+   - System fetches therapist's availability for that day of the week.
+   - System fetches already booked slots for that specific date.
+   - Displays available time slots (filtering out past times if today, and booked slots).
+   - User selects an available time slot.
+5. Clicks **Book Appointment**.
+6. **Backend Validation**:
+   - Checks if appointment date/time is in the past (rejects if true).
+   - Checks for double-booking (rejects if slot already booked).
+7. System creates appointment record (status: 'pending').
+8. Sends confirmation email to both patient and therapist with appointment details.
+9. Displays success popup with confirmation message and email notification info.
+10. User manually closes the popup.
 
 **Alternative:**
 
-- If slot is already booked, system shows: “This slot is no longer available.”  
-- If email fails to send, system still confirms booking in dashboard and retries email later.
+- If appointment is in the past, system shows: "Cannot book appointments in the past."
+- If slot is already booked, system shows: "This time slot is already booked."
+- If current hour equals or passes the slot time on current day, slot is not shown.
+- Success popup persists until user manually closes it.
 
 ---
 
@@ -217,19 +248,24 @@
 
 ### UC-12: Admin Adds Mindfulness Content
 **Actor:** Admin  
-**Goal:** To upload and manage mindfulness content.
+**Goal:** To create and manage wellness content for recommendations.
 
 **Flow:**
 
-1. Admin goes to **Content Management**.  
-2. Clicks **Add New Content**.  
-3. Enters title, description, and selects category (Calming / Uplifting / Maintenance / Gratitude).  
-4. Clicks **Save**.  
-5. Content appears in “Pending Approval” until approved.
+1. Admin logs into Django Admin panel.
+2. Navigates to **Content** section.  
+3. Clicks **Add Content**.  
+4. Enters:
+   - Title (max 150 characters)
+   - Description (mindfulness tip or exercise)
+   - Category: uplifting, calming, maintenance, or gratitude
+5. Clicks **Save**.  
+6. Content is immediately available for recommendations (no approval workflow).
 
 **Alternative:**
 
-- If the content title already exists, system shows a duplicate error.  
+- Admin can edit or delete existing content at any time.
+- Deleted content uses soft delete (deleted_at timestamp).  
 
 ---
 
