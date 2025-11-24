@@ -13,6 +13,7 @@
 | **Recharts** | Display mood analytics, trends, and chart visualizations. |
 | **Axios** | Manage API calls with interceptors for token refresh. |
 | **Lucide React** | Modern icon library for UI components. |
+| **Vitest** | Fast unit testing framework for frontend components and utilities. |
 
 ---
 

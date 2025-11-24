@@ -691,6 +691,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation Notes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
       Summary
@@ -726,6 +735,29 @@
   
   <span class="md-ellipsis">
     API Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CI-CD-pipeline-and-deployment-flow.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CI/CD Pipeline and Deployment
     
   </span>
   
@@ -830,26 +862,92 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>Authentication</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
 <td>Register / Login</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>Verify Email / Reset Password</td>
+<td>Verify Email</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>View / Edit Own Profile</td>
+<td>Request Password Reset</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>Add / Edit Mood Entry</td>
+<td>Reset Password</td>
 <td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Profile Management</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>View Own User Profile</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Edit Own User Profile</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Create Therapist Profile</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Edit Therapist Profile</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅ (own)</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>View Therapist Profile</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Mood Tracking</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Add Mood Entry</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Edit Mood Entry</td>
+<td style="text-align: center;">✅ (own)</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>View Mood Entries</td>
+<td style="text-align: center;">✅ (own)</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
 </tr>
@@ -857,58 +955,140 @@
 <td>View Mood Analytics</td>
 <td style="text-align: center;">✅ (own)</td>
 <td style="text-align: center;">❌</td>
-<td style="text-align: center;">✅ (global)</td>
-</tr>
-<tr>
-<td>Browse Therapist Directory</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td>Book / Cancel Appointment</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅ (own only)</td>
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td>Manage Availability / Slots</td>
+<td><strong>Therapist Directory</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Browse Approved Therapists</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Filter by Specialization</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Appointments</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Book Appointment</td>
+<td style="text-align: center;">✅</td>
 <td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>View Appointments</td>
+<td style="text-align: center;">✅ (own)</td>
+<td style="text-align: center;">✅ (their patients)</td>
+<td style="text-align: center;">✅ (all)</td>
+</tr>
+<tr>
+<td>Cancel Appointment</td>
+<td style="text-align: center;">✅ (own)</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>View Booked Slots</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>Therapist Session Management</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>Add Session Notes</td>
 <td style="text-align: center;">❌</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅ (their sessions)</td>
+<td style="text-align: center;">❌</td>
 </tr>
 <tr>
 <td>View Session Notes</td>
 <td style="text-align: center;">✅ (own)</td>
 <td style="text-align: center;">✅ (their patients)</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>Manage Availability Slots</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr>
+<td>View Availability</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>Manage Users &amp; Therapists</td>
+<td><strong>Admin Functions</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Approve Therapist Profiles</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>Approve Content / Therapists</td>
+<td>Manage Users</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">✅</td>
 </tr>
 <tr>
-<td>View Platform Analytics</td>
+<td>View All Data</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>Platform Analytics</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">✅</td>
 </tr>
 </tbody>
 </table>
+<h3 id="implementation-notes">Implementation Notes<a class="headerlink" href="#implementation-notes" title="Permanent link">¶</a></h3>
+<p><strong>Permission Classes:</strong>
+- <code>AllowAny</code> - Public endpoints (register, login, password reset, therapist directory)
+- <code>IsAuthenticated</code> - All protected endpoints require valid JWT token
+- Role-specific checks are performed in view logic using <code>request.user.role.name</code></p>
+<p><strong>Key Authorization Rules:</strong></p>
+<ol>
+<li><strong>Mood Entries</strong>: No explicit permission class, but enforced via <code>filter(user=request.user)</code> - users only see their own data</li>
+<li><strong>Appointments</strong>: </li>
+<li>Patients can book and cancel their own appointments</li>
+<li>Therapists can view appointments for their patients and add session notes</li>
+<li>Admin can view all appointments</li>
+<li><strong>Therapist Profiles</strong>:</li>
+<li>Only users with <code>therapist</code> role can create/update profiles</li>
+<li>Anyone can view approved therapist profiles (public directory)</li>
+<li><strong>Therapist Availability</strong>:</li>
+<li>Only therapists can manage their own availability</li>
+<li>Anyone (authenticated) can view availability for booking purposes</li>
+<li><strong>Email Verification</strong>:</li>
+<li>Therapists remain inactive until admin approval even after email verification</li>
+<li>Patients become active immediately after email verification</li>
+</ol>
 <hr>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h3>
 <ul>
